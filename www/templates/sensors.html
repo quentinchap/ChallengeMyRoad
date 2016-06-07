@@ -1,14 +1,34 @@
 <ion-view view-title="Sensors">
-  <ion-content ng-controller="SensorsCtrl as vm">
-    <div>
-        <label>Coordinates
-            <span>{{vm.coordinates.latitude}}, {{vm.coordinates.longitude}}</span>
-        </label>
-    </div>
-    <div>
-        <label>Acceleration
-            <span>{{vm.acceleration.x}}, {{vm.acceleration.y}}, {{vm.acceleration.z}}</span>
-        </label>
-    <div>
-  </ion-content>
+    <ion-content>
+        <div>
+            <label>Coordinates
+                <span>{{coordinates.latitude}}, {{coordinates.longitude}}</span>
+            </label>
+        </div>
+        <div>
+            <label>Acceleration
+                <span>{{acceleration.x}}, {{acceleration.y}}, {{acceleration.z}}</span>
+            </label>
+        </div>
+        <div>
+            <label>Temperature
+                <span>{{temperature}} K</span>
+            </label>
+        </div>
+        <div>
+            <label>Humidity
+                <span>{{humidity}} %</span>
+            </label>
+        </div>
+        <div>
+            <label>Pressure
+                <span>{{pressure}} hPa</span>
+            </label>
+        </div>
+        <div>
+            <label>Wind speed
+                <span>{{windSpeed}} m/s</span>
+            </label>
+        </div>
+    </ion-content>
 </ion-view>
