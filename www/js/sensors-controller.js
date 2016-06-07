@@ -2,8 +2,9 @@ angular.module('starter.sensors', [])
     .controller('SensorsCtrl', SensorsCtrl);
 
 SensorsCtrl.$inject = []
-function SensorsCtrl() {
+function SensorsCtrl($scope) {
     var vm = this;
+    
     var accelerationWatch = undefined;
     var positionWatch = undefined;
     vm.coordinates = {
@@ -27,8 +28,9 @@ function SensorsCtrl() {
         throw new Error('Device motion not supported :(');
     }
 
-    window.addEventListener('devicemotion', onAccelerationUpdate, true);
-
+    //window.addEventListener('devicemotion', onAccelerationUpdate, true);
+    var accelerationOptions = { frequency: 1000 };  // Update every 3 seconds
+    //accelerationWatch = navigator.accelerometer.watchAcceleration(onAccelerationUpdate, onAccelerationError, accelerationOptions);
 
 
     function onPositionError(err) {
@@ -46,4 +48,9 @@ function SensorsCtrl() {
         vm.acceleration.y = acceleration.y;
         vm.acceleration.z = acceleration.z;
     }
+    
+    function onAccelerationError(err) {
+        console.error('Failed to retrieve acceleration', err);
+    }
+
 }
