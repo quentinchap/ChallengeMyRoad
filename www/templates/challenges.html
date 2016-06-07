@@ -1,0 +1,44 @@
+<ion-view ng-controller="ChallengesCtrl as vm">
+    
+    <ion-nav-title>
+      Challenge n°{{ vm.challenge.id }}
+    </ion-nav-title>
+    <ion-content>
+
+    <div class="card">
+        <div class="item item-divider">
+          <h1 class="title" style="font-size:1.4em; font-color: green">
+              <i class="icon ion-trophy" style="font-color: green"></i>
+              {{ vm.challenge.title }}
+          </h1>
+        </div>        
+        <div class="item item-text-wrap">
+            {{ vm.challenge.detail }}
+        </div>
+        <div class="item item-divider">
+            <div>Votre progression actuelle: {{ vm.challenge.progress }}0%</div>
+            <div class="row">
+                <div class="col" style="background-color:{{ n <= vm.challenge.progress?'green':'white' }}" ng-repeat="n in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"></div>
+            </div>
+            
+        </div>
+    </div>
+
+    </ion-content>
+    <!--
+    <div class="bar bar-subheader">
+      <h2 class="title">Réduire sa vitesse</h2>
+    </div>
+    <ion-content ng-controller="ChallengesCtrl as vm" class="has-subheader">
+        Réduire sa vitesse aux limitations permet d'augmenter sa sécurité mais également réduire sa consommation.
+        Vous devez rouler 200 km sans faire d'excès de vitesse.    
+
+        Votre progression actuelle:
+
+        <i class="icon ion-ios-sunny-outline"></i>
+            <input type="range" name="volume" min="0" max="100" value="33">
+        <i class="icon ion-ios-sunny"></i>
+    </ion-content>-->
+
+</ion-view>
+      
