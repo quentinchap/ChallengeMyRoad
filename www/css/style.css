@@ -15,6 +15,12 @@
   float: left;
 }
 
+#leftMenu .menuLeftItem , #leftMenu  .item-content
+{
+  background-color: transparent;
+  border: 0;
+}
+
 .circle
 {
   border-radius: 50%;
@@ -84,6 +90,7 @@ body{
 {
   background-color: transparent;
   color: white;
+>>>>>>> master
   border: 0;
 }
 
