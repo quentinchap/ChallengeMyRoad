@@ -1,9 +1,9 @@
-<ion-view ng-controller="ChallengesCtrl as vm">
+<ion-view view-title="Challenges">
     
-    <ion-nav-title>
+    <!--<ion-nav-title ng-controller="ChallengesCtrl as vm">
       Challenge n°{{ vm.challenge.id }}
-    </ion-nav-title>
-    <ion-content>
+    </ion-nav-title>-->
+    <ion-content ng-controller="ChallengesCtrl as vm">
 
     <div class="card">
         <div class="item item-divider">
@@ -18,7 +18,9 @@
         <div class="item item-divider">
             <div>Votre progression actuelle: {{ vm.challenge.progress }}0%</div>
             <div class="row">
-                <div class="col" style="background-color:{{ n <= vm.challenge.progress?'green':'white' }}" ng-repeat="n in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"></div>
+                <div class="col" 
+                     style="background-color:{{ n <= vm.challenge.progress?'green':'white' }}" 
+                     ng-repeat="n in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"></div>
             </div>
             
         </div>
