@@ -41,7 +41,6 @@ function SensorsCtrl() {
     }
 
     function onAccelerationUpdate(event) {
-        console.log(event.accelerationIncludingGravity);
         var acceleration = event.accelerationIncludingGravity;
         vm.acceleration.x = acceleration.x;
         vm.acceleration.y = acceleration.y;
