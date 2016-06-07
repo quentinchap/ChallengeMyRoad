@@ -1,1 +1,1 @@
-angular.module('starter.sensors', []);
+angular.module('starter.sensors', ['starter.speed-limits']);
