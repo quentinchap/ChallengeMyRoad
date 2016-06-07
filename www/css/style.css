@@ -1,6 +1,14 @@
 /* Empty. Add your own CSS if you like */
 
+@font-face {
+    font-family: caviarDreams;
+    src: url(../font/CaviarDreams.ttf);
+}
+
 #leftMenu {
+  font-family: caviarDreams!important;
+  font-weight: bold;
+  padding-top: 50px;
   width: 30%;
   height: 100%;
   background-color: #339933;
@@ -13,8 +21,82 @@
   border: 0;
 }
 
+.circle
+{
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  border: solid 5px #339933;
+}
+
+#jauges
+{
+  float:right;
+}
+
+body{
+  background-color:  rgba(239,239,239,0.3);
+}
+
+#contentView{
+  width: 70%;
+  padding: 2%;
+  background-color:  rgba(239,239,239,0.3);
+}
+
+
+.circle p{
+  text-align: center;
+  font-size: 25px;
+  vertical-align: middle;
+  display: table-cell;
+  font-family: caviarDreams!important;
+  color: #339933;
+  vertical-align: middle;
+  padding: 10px;
+  height: 140px;
+}
+
+
+#challenges .card{
+  width: 45%;
+}
+
+#challenges .card h1{
+  font-size: 20px;
+  text-align: center;
+  padding-bottom: 5px;
+  border-bottom: solid 2px #339933;
+}
+
+#challenges .card img{
+    width: 60px;
+    float: left;
+}
+
+#challenges .card .point
+{
+  width: 60px;
+  float: left;
+  color: #339933;
+}
+
+#challenges .card p{
+    width: calc(100% - 65px);
+    float: right;
+}
+
+#leftMenu .menuLeftItem , #leftMenu  .item-content
+{
+  background-color: transparent;
+  color: white;
+>>>>>>> master
+  border: 0;
+}
+
 #content
 {
   margin-left: 30%;
   width: 70%;
+  background-color: rgba(239,239,239,0.3);
 }
