@@ -1,6 +1,6 @@
 <ion-side-menus enable-menu-with-back-views="false">
   <ion-side-menu-content>
-    <ion-nav-bar class="bar-stable">
+    <!--<ion-nav-bar class="bar-stable">
       <ion-nav-back-button>
       </ion-nav-back-button>
 
@@ -8,11 +8,37 @@
         <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
         </button>
       </ion-nav-buttons>
-    </ion-nav-bar>
-    <ion-nav-view name="menuContent"></ion-nav-view>
-  </ion-side-menu-content>
+    </ion-nav-bar>-->
+    <div id="leftMenu">
+      <ion-list>
+        <ion-item class="menuLeftItem item-icon-left" href="#/app/home">
+          <i class="icon ion-ios-home"></i>
 
-  <ion-side-menu side="left">
+           Home
+        </ion-item>
+        <ion-item class="menuLeftItem item-icon-left" href="#/app/sensors">
+          <i class="icon ion-ios-cart"></i> Market
+        </ion-item>
+        <ion-item class="menuLeftItem item-icon-left" href="#/app/sensors">
+          <i class="icon ion-ios-stopwatch"></i>
+          Challenges
+        </ion-item>
+        <ion-item class="menuLeftItem item-icon-left" href="#/app/sensors">
+          <i class="icon ion-ios-gear"></i>
+          Paramétres
+        </ion-item>
+        <ion-item class="menuLeftItem" href="#/app/sensors">
+          Sensors
+        </ion-item>
+      </ion-list>
+    </div>
+    <div id="content" >
+      <ion-nav-view name="menuContent"></ion-nav-view>
+    </div>
+
+  <!--</ion-side-menu-content>-->
+
+  <!--<ion-side-menu side="left">
     <ion-header-bar class="bar-stable">
       <h1 class="title">Left</h1>
     </ion-header-bar>
@@ -30,4 +56,4 @@
       </ion-list>
     </ion-content>
   </ion-side-menu>
-</ion-side-menus>
+</ion-side-menus>->
