@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'ngMaterial', 'starter.controllers', 'firebase', 'starter.sensors'])
+angular.module('starter', ['ionic', 'ngMaterial', 'starter.controllers', 'firebase', 'starter.sensors', 'starter.challenges'])
 
   .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
@@ -39,7 +39,17 @@ angular.module('starter', ['ionic', 'ngMaterial', 'starter.controllers', 'fireba
             controller: 'SensorsCtrl'
           }
         }
-      });
+      })
+    .state('app.challenges', {
+        url: '/challenges/:challengeId',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/challenges.html',
+            controller: 'ChallengesCtrl'
+          }
+        }
+      })
+    ;
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/app/sensors');
   })
