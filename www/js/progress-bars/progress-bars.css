@@ -43,16 +43,25 @@ md-progress-linear .md-container .md-bar{
 
 .points-counter{
   position: absolute;
-  top: 3.5em;
+  top: 3em;
   width: 100%;
   text-align: center;
   color: #3e2b12;
 }
 
+.points-counter .points-word {
+    color:white;
+    font-weight:bold;
+    font-style:italic;
+    font-size:1em;
+}
+
 .points-counter .point
 {
-  font-size: 2em;
+  font-size: 4em;
   font-weight: bold;
+  color: white;
+  font-style:italic;
 }
 
 .navigation
