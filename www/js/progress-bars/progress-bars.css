@@ -1,6 +1,7 @@
 .progress-bars-card {
   height: 90%;
- padding: 10px;
+  padding: 10px;
+  margin: 0;
 }
 
 #progressBar
@@ -8,6 +9,30 @@
   width: 45%;
   height: 100%;
   float: left;
+}
+
+.progressItem
+{
+  height: 40%;
+}
+
+.progress-bars
+{
+  height: 50%;
+  padding: 10px;
+  text-align: center;
+  line-height: 2em;
+  font-size: 1.5em;
+}
+
+
+md-progress-linear .md-container
+{
+  height: 10px;
+}
+
+md-progress-linear .md-container .md-bar{
+  height: 100%;
 }
 
 .hexagone
@@ -22,10 +47,6 @@
   width: 100%;
   text-align: center;
   color: #3e2b12;
-}
-
-.progress-bars .points {
-
 }
 
 .points-counter .point
@@ -53,8 +74,8 @@
   width: 100%;
   height: 100%;
   background: -moz-linear-gradient(right, rgba(76,175,80,0.9) 0%, rgba(76,175,80,0.3) 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(right, rgba(76,175,80,0.9) 0%,rgba(76,175,80,0.3) 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to left, rgba(76,175,80,0.9) 0%,rgba(76,175,80,0.3) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  background: -webkit-linear-gradient(right, rgba(76,175,80,0.9) 0%,rgba(76,175,80,0.3) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to left, rgba(76,175,80,0.9) 0%,rgba(76,175,80,0.3) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 
 }
 
@@ -62,8 +83,8 @@ background: linear-gradient(to left, rgba(76,175,80,0.9) 0%,rgba(76,175,80,0.3) 
   width: 100%;
   height: 100%;
   background: -moz-linear-gradient(right, rgba(220,87,87,0.9) 0%, rgba(220,87,87,0) 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(right, rgba(220,87,87,0.9) 0%,rgba(220,87,87,0) 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to left, rgba(220,87,87,0.9) 0%,rgba(220,87,87,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  background: -webkit-linear-gradient(right, rgba(220,87,87,0.9) 0%,rgba(220,87,87,0) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to left, rgba(220,87,87,0.9) 0%,rgba(220,87,87,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 
 }
 
