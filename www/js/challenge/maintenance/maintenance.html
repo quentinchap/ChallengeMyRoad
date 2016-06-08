@@ -4,29 +4,49 @@
       Challenge n°{{ vm.challenge.id }}
     </ion-nav-title>-->
 
-    <md-card>
+    <!--<md-card>
         <md-card-title>
           <span class="md-headline" style="font-size:1.4em; font-color: green">
               <i class="icon ion-trophy" style="font-color: green"></i>
               {{ vm.challenge.title }}
           </span>
         </md-card-title>        
-        <div class="item item-text-wrap">
+        <div class="item item-text-wrap md-body-1">
             {{ vm.challenge.detail }}
         </div>
         <div class="item item-divider">
-            <div>Votre progression actuelle: {{ vm.challenge.progress }}0%</div>
+            <div>Progression: {{ vm.challenge.progress }}0%</div>
             <div class="row">
                 <div class="col" 
                      style="background-color:{{ n <= vm.challenge.progress?'green':'white' }}" 
                      ng-repeat="n in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"></div>
+                <div class="col" 
             </div>
             
         </div>
 
 
-    </md-card>
-    <div maintenance-challenge></div>
+    </md-card>-->
+    
+    
+     <md-card md-theme="default" md-theme-watch>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">{{ vm.challenge.title }}</span>
+            <!--<span class="md-subhead">{{ vm.challenge.detail }}</span>-->
+          </md-card-title-text>
+          <md-card-title-media>
+            <div class="md-media-lg card-media">
+                <i class="material-icons" style="color:green">check_circle</i>
+                {{ vm.challenge.gain }} PTS
+            </div>
+          </md-card-title-media>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button>OK</md-button>
+          <md-button>Plus tard</md-button>
+        </md-card-actions>
+      </md-card>
 
 </div>
       

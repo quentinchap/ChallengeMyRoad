@@ -7,10 +7,15 @@ function MaintenanceCtrl(/*$stateParams, /*maintenanceService*/) {
     //vm.challenge = maintenanceService.read($stateParams.challengeId);
     
     vm.challenge = {
-        //id: $stateParams.challengeId,
-        title: 'Anticiper les obstacles',
-        detail: 'Afin de mieux anticiper les obstacles, vous devez réduire les freinages brusques de 10%.',
-        progress: 8
+        idChallenge: 1,
+        title: 'Pression des pneus',
+        detail: 'Diminution adhérence + Augmentation conso + durée de vie des pneus réduite',
+        gain: 50,
+        challengeUser: {
+            idUser: 1,
+            idChallenge: 1,
+            state: 0
+        }
     };
 }
 
