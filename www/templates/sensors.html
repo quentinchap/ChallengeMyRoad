@@ -2,26 +2,28 @@
     <section ng-hide="loaded" layout-align="center center" flex layout="column">
         <md-progress-circular md-mode="indeterminate"></md-progress-circular>
     </section>
+
     <div ng-show="loaded" style="height:100%" >
         <ec-progress-bars ></ec-progress-bars>
         <div id="challenges" >
+
             <md-grid-list md-cols-xs="1" md-cols-sm="1" md-cols="1" md-row-height="2:1" md-gutter="24px" md-gutter-gt-sm="16px">
-                <md-grid-tile class="challenge navigation" layout="row">
+                <md-grid-tile class="challenge {{ challenges[0].type }}" layout="row">
                   <div class="backCard">
-                    <md-icon md-font-library="material-icons">navigation</md-icon>
-                    <span class="titleObj"> <span class="title">Réduire sa vitesse</span><br/> + 50 pts</span>
+                    <i class="{{ challenges[0].icon }}"></i>
+                    <span class="titleObj"> <span class="title"> {{ challenges[0].title }}</span><br/> +  {{ challenges[0].gain }} pts</span>
                     <md-grid-tile-footer>
-                        <h3>Réduisez votre vitesse de 5km/h sur ce trajet.</h3>
+                        <h3> {{ challenges[0].detail }}</h3>
                     </md-grid-tile-footer>
                     </div>
                 </md-grid-tile>
 
-                <md-grid-tile class="challenge meteo bad" layout="row">
+                <md-grid-tile class="challenge {{ challenges[4].type }}" layout="row">
                   <div class="backCard">
-                    <i class="mdi mdi-weather-pouring"></i>
-                    <span class="titleObj"> <span class="title">Adapter votre conduite.</span><br/> + 20 pts</span>
+                    <i class="{{ challenges[4].icon }}"></i>
+                    <span class="titleObj"> <span class="title"> {{ challenges[4].title }}</span><br/> +  {{ challenges[4].gain }} pts</span>
                     <md-grid-tile-footer>
-                        <h3>Adaptez votre vitesse au temps pluvieux</h3>
+                        <h3>{{ challenges[4].detail }}</h3>
                     </md-grid-tile-footer>
                   </div>
                 </md-grid-tile>

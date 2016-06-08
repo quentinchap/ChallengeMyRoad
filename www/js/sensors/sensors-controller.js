@@ -15,7 +15,8 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
                 goalCriteria: "<=",
                 goalType: "km/h",
                 goalValue: 80,
-                type: "conduite",
+                type: "navigation",
+                icon:"mdi mdi-speedometer",
                 challengeUser: {
                     idUser: 1,
                     display: 1,
@@ -59,7 +60,8 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
             gain: 50,
             goalType: "OK/KO",
             goalValue: "OK",
-            type: "maintenance",
+            type: "meteo bad",
+            icon:"mdi mdi-weather-pouring",
             challengeUser: {
               idUser: 1,
               display: 1,
@@ -74,7 +76,8 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
             gain: 50,
             goalType: "OK/KO",
             goalValue: "OK",
-            type: "maintenance",
+            type: "meteo bad",
+            icon:"mdi mdi-weather-pouring",
             challengeUser: {
               idUser: 1,
               display: 1,
@@ -82,8 +85,6 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
             }
 
           }
-
-
         ];
 
         $rootScope.sensorsInitialized = true;
