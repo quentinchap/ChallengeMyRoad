@@ -24,7 +24,12 @@ angular.module('starter', ['ionic', 'ngMaterial', 'starter.controllers', 'fireba
 
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
-
+      .state('login',{
+        url: '/login',
+        authenticate: false,
+        templateUrl: 'templates/login.html',
+        controller: 'LoginCtrl'
+      })
       .state('app', {
         url: '/app',
         abstract: true,
@@ -51,7 +56,7 @@ angular.module('starter', ['ionic', 'ngMaterial', 'starter.controllers', 'fireba
       })
     ;
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/app/sensors');
+    $urlRouterProvider.otherwise('/login');
   })
 
   .config(function themeConfiguration($mdThemingProvider) {
