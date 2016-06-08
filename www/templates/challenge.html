@@ -1,7 +1,17 @@
-<md-content layout-padding flex>
+<md-content layout-padding flex ng-controller="MaintenanceCtrl as vm">
     <div layout="row">
-        <ec-maintenance flex></ec-maintenance>
-        <ec-maintenance flex></ec-maintenance>
+        <div flex ng-repeat="mychallenge in vm.challenges"> 
+            
+            <ec-maintenance title="{{ mychallenge.title }}" 
+                            detail="{{ mychallenge.detail }}" 
+                            gain="{{ mychallenge.gain }}"
+                            display="{{ mychallenge.challengeUser.display }}"
+                            icon="{{ mychallenge.challengeUser.challengeIcon }}"
+                            state="{{ mychallenge.challengeUser.state }}"
+                            challengeid="{{ mychallenge.idChallenge }}"
+                            thechallenge="mychallenge">
+            </ec-maintenance>
+        </div>
     </div>
 </md-content>
       

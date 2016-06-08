@@ -6,6 +6,38 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
     var pointsUpdateThreshold = 5;
 
     if (!$rootScope.sensorsInitialized) {
+        
+        $rootScope.challenges = [{
+                idChallenge: 1,
+                title: "Réduire sa vitesse de 5 km/h",
+                detail: "Réduisez votre vitesse moyenne de 5 km/h sur ce trajet. Réduire la vitesse d’une dizaine de kilomètres/heure ne vous mettra pas trop en retard et vous fera faire des economies",
+                gain: 100,
+                goalCriteria: "<=",
+                goalType: "km/h",
+                goalValue: 80,
+                type: "conduite",
+                challengeUser: {
+                    idUser: 1,
+                    display: 1,
+                    state: 0
+                }
+            },
+            {
+                idChallenge: 2,
+                title: "Pression des pneus",
+                detail: "Diminution adhérence + Augmentation conso + durée de vie des pneus réduite",
+                gain: 50,
+                goalType: "OK/KO",
+                goalValue: "OK",
+                type: "maintenance",
+                challengeUser: {
+                    idUser: 1,
+                    display: 1,
+                    state: 0
+                }
+
+            }];
+        
         $rootScope.sensorsInitialized = true;
         $rootScope.loaded = false;
 

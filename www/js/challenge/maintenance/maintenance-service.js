@@ -2,11 +2,9 @@ angular.module('starter.challenges').service('maintenanceService', function ($fi
 
   this.readAll = function () {
       var ref = firebase.database().ref().child("challenge");
-      return $firebaseArray(ref);
+      var fbArray = $firebaseArray(ref);
+      console.log(fbArray.length);
+      return fbArray;
   };
 
-  this.read = function (id) {
-      var challenges = this.readAll();
-      return challenges.$getRecord(id);
-  };
 });

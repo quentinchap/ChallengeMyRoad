@@ -1,5 +1,5 @@
 <div id="contentView" ng-controller="MaintenanceCtrl as vm">
-    
+
     <!--<ion-nav-title ng-controller="MaintenanceCtrl as vm">
       Challenge n°{{ vm.challenge.id }}
     </ion-nav-title>-->
@@ -20,33 +20,30 @@
                 <div class="col" 
                      style="background-color:{{ n <= vm.challenge.progress?'green':'white' }}" 
                      ng-repeat="n in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"></div>
-                <div class="col" 
             </div>
             
         </div>
 
 
     </md-card>-->
-    
-    
-     <md-card md-theme="default" md-theme-watch ng-class="{challengeHide: !vm.challenge.challengeUser.display}">
+
+     <md-card md-theme="default" md-theme-watch ng-class="{challengeHide: display == 0}">
         <md-card-title>
           <md-card-title-text>
-            <span class="md-headline">{{ vm.challenge.title }}</span>
-            <!--<span class="md-subhead">{{ vm.challenge.detail }}</span>-->
+            <span class="md-headline">{{ title }}</span>
+            <!--<span class="md-subhead">{{ detail }}</span>-->
           </md-card-title-text>
           <md-card-title-media>
             <div class="md-media-lg card-media">
-                <i class="material-icons" ng-class="{challengeOk: vm.challenge.challengeUser.state != 0, challengeKo: vm.challenge.challengeUser.state == 0}">{{ vm.challengeIcon }}</i>
-                {{ vm.challenge.gain }} PTS
+                <i class="material-icons" ng-class="{challengeOk: state != 0, challengeKo: state == 0}">{{ icon }}</i>
+                {{ gain }} PTS
             </div>
           </md-card-title-media>
         </md-card-title>
-        <md-card-actions layout="row" layout-align="end center" ng-class="{challengeHide: vm.challenge.challengeUser.state != 0}">
-          <md-button ng-click="vm.ok()">OK</md-button>
-          <md-button ng-click="vm.later()">Plus tard</md-button>
+        <md-card-actions layout="row" layout-align="end center" ng-class="{challengeHide: state != 0}">
+          <md-button ng-click="ok()">OK</md-button>
+          <md-button ng-click="later()">Plus tard</md-button>
         </md-card-actions>
       </md-card>
-
 </div>
       
