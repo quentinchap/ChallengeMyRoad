@@ -41,18 +41,54 @@
   background-position: bottom;
 }
 
+.meteo
+{
+  background-image: url(../../img/orage.jpg);
+  background-size: 100%;
+  background-position: bottom;
+}
+
 .backCard
 {
   width: 100%;
   height: 100%;
-  background: -moz-linear-gradient(left, rgba(76,175,80,0.9) 0%, rgba(76,175,80,0) 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(left, rgba(76,175,80,0.9) 0%,rgba(76,175,80,0) 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to right, rgba(76,175,80,0.9) 0%,rgba(76,175,80,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  background: -moz-linear-gradient(right, rgba(76,175,80,0.9) 0%, rgba(76,175,80,0.3) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(right, rgba(76,175,80,0.9) 0%,rgba(76,175,80,0.3) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to left, rgba(76,175,80,0.9) 0%,rgba(76,175,80,0.3) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 
 }
 
-.backCard md-icon
+.bad .backCard{
+  width: 100%;
+  height: 100%;
+  background: -moz-linear-gradient(right, rgba(220,87,87,0.9) 0%, rgba(220,87,87,0) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(right, rgba(220,87,87,0.9) 0%,rgba(220,87,87,0) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to left, rgba(220,87,87,0.9) 0%,rgba(220,87,87,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+}
+
+.backCard md-icon, .backCard i
 {
   margin-top: 40px;
   margin-left: 20px;
+}
+
+.titleObj
+{
+  float: right;
+  margin-top: 30px;
+  text-align: right;
+  margin-right: 10px;
+  font-size: 2em;
+  height: 100%;
+  display: block;
+  color: white;
+  line-height: 1em;
+  width: calc(100% - 100px);
+}
+
+.titleObj .title
+{
+  font-weight: bold;
+  font-size: 1.2em;
 }
