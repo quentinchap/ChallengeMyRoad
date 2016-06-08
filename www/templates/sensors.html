@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <md-content layout-padding flex>
     <section ng-hide="loaded" layout-align="center center" flex layout="column">
         <md-progress-circular md-mode="indeterminate"></md-progress-circular>
@@ -30,3 +31,44 @@
         </div>
     </div>
 </md-content>
+=======
+<ion-view view-title="Sensors">
+    <ion-content>
+        <div>
+            <label>Coordinates
+                <span>{{coordinates.latitude}}, {{coordinates.longitude}}</span>
+            </label>
+        </div>
+        <div>
+            <label>Acceleration
+                <span>{{acceleration.x}}, {{acceleration.y}}, {{acceleration.z}}</span>
+            </label>
+        </div>
+        <div>
+            <label>Temperature
+                <span>{{temperature}} K</span>
+            </label>
+        </div>
+        <div>
+            <label>Humidity
+                <span>{{humidity}} %</span>
+            </label>
+        </div>
+        <div>
+            <label>Pressure
+                <span>{{pressure}} hPa</span>
+            </label>
+        </div>
+        <div>
+            <label>Wind speed
+                <span>{{windSpeed}} m/s</span>
+            </label>
+        </div>
+        <div>
+            <label>Speed limit
+                <span>{{speedLimit}} km/h</span>
+            </label>
+        </div>
+    </ion-content>
+</ion-view>
+>>>>>>> designIntegration

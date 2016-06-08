@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
@@ -14,6 +13,10 @@
   <link href="js/store/store.css" rel="stylesheet">
   <link href="js/progress-bars/progress-bars.css" rel="stylesheet">
   <link href="js/challenge/maintenance/maintenance.css" rel="stylesheet">
+  <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="lib/animate.css/animate.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
 
   <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
   <link href="css/ionic.app.css" rel="stylesheet">
@@ -30,15 +33,17 @@
   <script src="lib/angular-material/angular-material.min.js"></script>
   <!-- ionic/angularjs js -->
   <script src="lib/ionic/js/ionic.bundle.js"></script>
+<!-- ionic/angularjs js -->
+<script src="lib/ionic/js/ionic.bundle.js"></script>
+<!-- cordova script (this will be a 404 during development) -->
+<script src="cordova.js"></script>
 
-  <!-- cordova script (this will be a 404 during development) -->
-  <script src="cordova.js"></script>
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/3.0.3/firebase.js"></script>
 
-  <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/3.0.3/firebase.js"></script>
+<!-- AngularFire -->
+<script src="https://cdn.firebase.com/libs/angularfire/2.0.0/angularfire.min.js"></script>
 
-  <!-- AngularFire -->
-  <script src="https://cdn.firebase.com/libs/angularfire/2.0.0/angularfire.min.js"></script>
 
   <script>
     // Initialize Firebase
@@ -55,12 +60,15 @@
   <script src="js/app.js"></script>
   <script src="js/controllers.js"></script>
 
-  <script src="js/sensors/sensors-module.js"></script>
-  <script src="js/sensors/sensors-controller.js"></script>
-  <script src="js/sensors/sensors-service.js"></script>
+<script src="js/sensors/sensors-module.js"></script>
+<script src="js/sensors/sensors-controller.js"></script>
+<script src="js/sensors/sensors-service.js"></script>
 
-  <script src="js/speed-limits/speed-limits-module.js"></script>
-  <script src="js/speed-limits/speed-limits-service.js"></script>
+<script src="js/speed-limits/speed-limits-module.js"></script>
+<script src="js/speed-limits/speed-limits-service.js"></script>
+
+<script src="js/challenge.service.js"></script>
+<script src="js/home.controller.js"></script>
 
   <script src="js/challenge/challenge-module.js"></script>
 
@@ -74,10 +82,12 @@
 
   <script src="js/progress-bars/progress-bars-module.js"></script>
   <script src="js/progress-bars/progress-bars-directive.js"></script>
+
 </head>
 
 <body ng-app="starter">
   <ion-nav-view></ion-nav-view>
 </body>
+
 
 </html>
