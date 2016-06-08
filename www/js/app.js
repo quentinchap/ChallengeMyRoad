@@ -33,11 +33,13 @@ angular.module('starter', ['ionic', 'ngMaterial', 'starter.controllers', 'fireba
       .state('app', {
         url: '/app',
         abstract: true,
+        authenticate: false,
         templateUrl: 'templates/menu.html',
         controller: 'AppCtrl'
       })
       .state('app.sensors', {
         url: '/sensors',
+        authenticate: false,
         views: {
           'menuContent': {
             templateUrl: 'templates/sensors.html',
@@ -47,6 +49,7 @@ angular.module('starter', ['ionic', 'ngMaterial', 'starter.controllers', 'fireba
       })
     .state('app.challenges', {
         url: '/challenges',
+        authenticate: false,
         views: {
           'menuContent': {
             templateUrl: 'templates/challenge.html',
