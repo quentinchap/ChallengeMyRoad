@@ -1,23 +1,16 @@
-angular.module('starter.challenges', [])
-    .controller('ChallengesCtrl', ChallengesCtrl);
+angular.module('starter.challenges', []).controller('MaintenanceCtrl', MaintenanceCtrl);
 
-ChallengesCtrl.$inject = ['$stateParams'/*'challengesService'*/]
-function ChallengesCtrl($stateParams/*challengesService*/) {
+//MaintenanceCtrl.$inject = [/*'$stateParams','maintenanceService'*/];
+function MaintenanceCtrl(/*$stateParams, /*maintenanceService*/) {
     var vm = this;
 
-    //vm.challenge = challengesService.read($stateParams.challengeId);
+    //vm.challenge = maintenanceService.read($stateParams.challengeId);
     
     vm.challenge = {
-        id: $stateParams.challengeId,
+        //id: $stateParams.challengeId,
         title: 'Anticiper les obstacles',
         detail: 'Afin de mieux anticiper les obstacles, vous devez réduire les freinages brusques de 10%.',
         progress: 8
     };
 }
 
-
-function maintenanceChallenge() {
-  return {
-    templateUrl: 'template/maintenance-challenge.html'
-  };
-};

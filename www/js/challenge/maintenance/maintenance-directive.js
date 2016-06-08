@@ -1,9 +1,6 @@
-angular.module('starter.challenges', [])
-    .directive('maintenanceChallenge', maintenanceChallenge);
-
-
-function maintenanceChallenge() {
+angular.module('starter.challenges')
+    .directive('ecMaintenance', function () {
   return {
-    templateUrl: 'js/challenge/maintenance/maintenance.html'
+    templateUrl: '/js/challenge/maintenance/maintenance.html'
   };
-};
+});

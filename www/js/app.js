@@ -41,7 +41,7 @@ angular.module('starter', ['ionic', 'ngMaterial', 'starter.controllers', 'fireba
         }
       })
     .state('app.challenges', {
-        url: '/challenges/:challengeId',
+        url: '/challenges',
         views: {
           'menuContent': {
             templateUrl: 'templates/challenge.html',
