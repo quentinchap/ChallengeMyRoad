@@ -1,41 +1,40 @@
 angular.module('starter.sensors')
     .controller('SensorsCtrl', SensorsCtrl);
 
-SensorsCtrl.$inject = ['$interval', '$rootScope', 'sensorsService', 'speedLimitsService'];
-function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService) {
-    var accelerationWatch = undefined;
-    var positionWatch = undefined;
-    var weatherWatch = undefined;
-    var speedLimitWatch = undefined;
-    var pointsUpdateThreshold = 50;
+SensorsCtrl.$inject = ['$interval', '$rootScope', 'sensorsService', 'speedLimitsService', 'maintenanceService'];
+function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, maintenanceService) {
+    var pointsUpdateThreshold = 5;
 
-    $rootScope.loaded = false;
+    if (!$rootScope.sensorsInitialized) {
+        $rootScope.sensorsInitialized = true;
+        $rootScope.loaded = false;
 
-    $rootScope.coordinates = {
-        latitude: undefined,
-        longitude: undefined,
-        altitude: undefined
-    };
-    $rootScope.speed = undefined;
-    $rootScope.acceleration = {
-        x: undefined,
-        y: undefined,
-        z: undefined
-    };
-    $rootScope.accuracy = undefined;
+        $rootScope.coordinates = {
+            latitude: undefined,
+            longitude: undefined,
+            altitude: undefined
+        };
+        $rootScope.speed = undefined;
+        $rootScope.acceleration = {
+            x: undefined,
+            y: undefined,
+            z: undefined
+        };
+        $rootScope.accuracy = undefined;
 
-    $rootScope.points = 0;
-    $rootScope.speedProgress = 50;
-    $rootScope.brakingProgress = 50;
-    $rootScope.accelerationProgress = 50;
-    $rootScope.distance = 0;
+        $rootScope.points = 0;
+        $rootScope.speedProgress = 50;
+        $rootScope.brakingProgress = 50;
+        $rootScope.accelerationProgress = 50;
+        $rootScope.distance = 0;
 
-    $rootScope.temperature = undefined;
-    $rootScope.pressure = undefined;
-    $rootScope.humidity = undefined;
-    $rootScope.windSpeed = undefined;
+        $rootScope.temperature = undefined;
+        $rootScope.pressure = undefined;
+        $rootScope.humidity = undefined;
+        $rootScope.windSpeed = undefined;
 
-    $rootScope.speedLimit = undefined;
+        $rootScope.speedLimit = undefined;
+    }
 
     initialize();
 
@@ -48,7 +47,7 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService) 
     }
 
     function registerPositionListener() {
-        positionWatch = navigator.geolocation.watchPosition(
+        navigator.geolocation.watchPosition(
             onPositionUpdate,
             onPositionError, {
                 enableHighAccuracy: true
@@ -81,7 +80,7 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService) 
             var dist = distance($rootScope.coordinates.latitude, $rootScope.coordinates.longitude, position.coords.latitude, position.coords.longitude);
             console.log(dist);
             if ($rootScope.distance % pointsUpdateThreshold < pointsUpdateThreshold && ($rootScope.distance % pointsUpdateThreshold) + dist >= pointsUpdateThreshold) {
-                var points = ((($rootScope.distance % pointsUpdateThreshold) + dist - pointsUpdateThreshold) / pointsUpdateThreshold) | 0;
+                var points = ((($rootScope.distance % pointsUpdateThreshold) + dist) / pointsUpdateThreshold) | 0;
                 addPoints(points);
             }
             $rootScope.distance += dist;
@@ -173,9 +172,9 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService) 
     function updateAccelerationProgress() {
         if ($rootScope.speed > 10 / 3.6) {
             if (norm($rootScope.acceleration) <= 10) {
-                $rootScope.accelerationProgress += 0.001;
+                $rootScope.accelerationProgress += 0.01;
             } else {
-                $rootScope.accelerationProgress -= 0.002;
+                $rootScope.accelerationProgress -= 0.02;
             }
         }
         if ($rootScope.accelerationProgress < 0) {
