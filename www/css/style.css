@@ -124,11 +124,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
   margin-left: 0%;
   text-align: center;
   padding: 20px;
+  padding-bottom: 0;
 }
 
 
 #tileLogin h2{
-  color: black;
+  padding-top: 80px;
+  color: #39523A;
+  font-size: 1.4em;
+  font-style: italic;
 }
 
 
