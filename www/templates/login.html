@@ -1,9 +1,10 @@
-<div id="contentView" ng-controller="LoginCtrl as vm">
+<div id="contentView" class="loginScreen" ng-controller="LoginCtrl as vm">
+  <div class="content">
 
     <br/><br/>
     <h2 class="title">Entrer et commencer à rouler.</h2>
     <br/><br/>
-    <div style="background-color:#f4f4f4;">
+    <div id="toolBarLogin">
       <a style="color:black;">Connexion avec...</a><br/>
       <a href="" ng-click="loginFacebook()" style="text-decoration: none;">
         <img src="../img/facebook-login.png" alt="Login with facebook" style="height:50px;text-align:center; margin-left:3px;" />
@@ -15,7 +16,8 @@
       </a>
       <br/><br/>
 
-      <a ui-sref="sensor">home</a>
+      <a ui-sref="app.sensors">home</a>
     </div>
+  </div>
 
 </div>
