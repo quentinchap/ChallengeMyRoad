@@ -1,4 +1,22 @@
 <div ng-controller="ProgressBarsCtrl">
-    <h1>{{foo}}</h1>
-    <h1>Baz</h1>
+    <md-card class="progress-bars-card">
+        <md-content ng-hide="loaded" layout-align="center center" flex layout="column">
+            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+        </md-content>
+        <md-content ng-show="loaded" flex layout="column">
+            <div class="points">
+                <i class="mei mei-hexagon-outline"></i>
+                <span class="points-counter">{{points}} points</span>
+            </div>
+
+            <div class="progress-bars">
+                <span class="progress-bar-label">Vitesse</span>
+                <md-progress-linear md-mode="determinate" value="{{speedProgress}}"></md-progress-linear>
+                <span class="progress-bar-label">Freinage</span>
+                <md-progress-linear md-mode="determinate" value="{{brakingProgress}}"></md-progress-linear>
+                <span class="progress-bar-label">Accélération</span>
+                <md-progress-linear md-mode="determinate" value="{{accelerationProgress}}"></md-progress-linear>
+            </div>
+        </md-content>
+    </md-card>
 </div>
