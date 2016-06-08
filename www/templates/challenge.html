@@ -8,10 +8,10 @@
  challenge {{ challenge.type }}"
           ng-style="{'animation-delay': '0.'+$index+'s'};"
           layout="row">
-            <div class="backCard ">
+            <div class="backCard " ng-click="detail = !detail">
               <i class="{{ challenge.icon }}"></i>
               <span class="titleObj"> <span class="title">{{ challenge.title }}</span><br/> + {{ challenge.gain }} pts</span>
-              <md-grid-tile-footer>
+              <md-grid-tile-footer ng-if="detail" class="animated fadeInUp" >
                 <h3>{{ challenge.detail }}</h3>
               </md-grid-tile-footer>
             </div>

@@ -74,7 +74,7 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
           },
           {
             idChallenge: 5,
-            title: "Adopter une conduite souple",
+            title: "Conduite souple",
             detail: "Eviter les freinages, les ralentissements et utiliser le frein moteur permet un gain de carburant de 40%.",
             gain: 50,
             goalType: "OK/KO",
@@ -311,7 +311,7 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
     }
 // z positif desceleration
 // 6 = freinage brutal
-// seil vitesse frainage 
+// seil vitesse frainage
 // acc oppose freinage
 // seuil freinage superiieur
 // seuil 6-7
