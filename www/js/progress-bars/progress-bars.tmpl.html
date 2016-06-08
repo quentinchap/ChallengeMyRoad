@@ -1,12 +1,13 @@
-<div ng-controller="ProgressBarsCtrl">
+<div ng-controller="ProgressBarsCtrl" id="progressBar">
     <md-card class="progress-bars-card">
         <md-content ng-hide="loaded" layout-align="center center" flex layout="column">
             <md-progress-circular md-mode="indeterminate"></md-progress-circular>
         </md-content>
         <md-content ng-show="loaded" flex layout="column">
             <div class="points">
+              <img class="hexagone" src="../img/hexagone.png">
                 <i class="mei mei-hexagon-outline"></i>
-                <span class="points-counter">{{points}} points</span>
+                <span class="points-counter">+ {{points}} pts</span>
             </div>
 
             <div class="progress-bars">
