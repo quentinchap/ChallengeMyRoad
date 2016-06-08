@@ -1,0 +1,32 @@
+md-toolbar.extra-tall {
+  height: 192px;
+  min-height: 192px;
+  max-height: 192px;
+}
+
+.challenge-progress {
+  height: 192px;
+}
+
+.challenge md-icon {
+  width: 64px;
+  height: 64px;
+  font-size: 64px;
+  color: white;
+}
+
+.challenge i {
+  width: 64px;
+  height: 64px;
+  font-size: 64px;
+  color: white;
+}
+
+.challenge h3 {
+  color: white;
+  border: 0;
+}
+
+.green-hue-1 {
+  background-color:rgb(76,175,80);
+}
