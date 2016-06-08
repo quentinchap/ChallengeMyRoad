@@ -2,9 +2,9 @@
     <section ng-hide="loaded" layout-align="center center" flex layout="column">
         <md-progress-circular md-mode="indeterminate"></md-progress-circular>
     </section>
-    <div ng-show="loaded">
+    <div ng-show="loaded" style="height:100%">
         <ec-progress-bars></ec-progress-bars>
-        <div>
+        <div id="challenges">
             <md-grid-list md-cols-xs="1" md-cols-sm="2" md-cols="3" md-row-height="2:1" md-gutter="24px" md-gutter-gt-sm="16px">
                 <md-grid-tile class="green-hue-1 challenge">
                     <md-icon md-font-library="material-icons">navigation</md-icon>

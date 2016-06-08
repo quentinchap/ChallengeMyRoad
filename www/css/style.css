@@ -65,3 +65,19 @@ md-menu-content.md-default-theme, md-menu-content
 .green-hue-1 {
   background-color:rgb(76,175,80);
 }
+
+#challenges
+{
+  width: 50%;
+  float: right;
+}
+
+#content
+{
+  height: 100%;
+}
+
+#content md-content
+{
+  height: 100%;
+}
