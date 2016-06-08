@@ -27,7 +27,7 @@ function ProgressBarCtrl($interval, $scope, sensorsService, speedLimitsService) 
     $scope.speedProgress = 50;
     $scope.brakingProgress = 50;
     $scope.accelerationProgress = 50;
-    $scope.meters = 0;
+    $scope.distance = 0;
     var pointsUpdateThreshold = 50;
 
     initialize();
@@ -36,6 +36,7 @@ function ProgressBarCtrl($interval, $scope, sensorsService, speedLimitsService) 
         registerPositionListener();
         registerAccelerationListener();
         registerSpeedLimitListener();
+        $scope.loaded = true;
     }
 
     function registerPositionListener() {
@@ -67,17 +68,18 @@ function ProgressBarCtrl($interval, $scope, sensorsService, speedLimitsService) 
         if (!positionUndefined) {
             var dist = distance($scope.coordinates.latitude, $scope.coordinates.longitude, position.coords.latitude, position.coords.longitude);
             console.log(dist);
-            if ($scope.meters % pointsUpdateThreshold < pointsUpdateThreshold && ($scope.meters % pointsUpdateThreshold) + dist >= pointsUpdateThreshold) {
-                var points = ((($scope.meters % pointsUpdateThreshold) + dist - pointsUpdateThreshold) / pointsUpdateThreshold) | 0;
+            if ($scope.distance % pointsUpdateThreshold < pointsUpdateThreshold && ($scope.distance % pointsUpdateThreshold) + dist >= pointsUpdateThreshold) {
+                var points = ((($scope.distance % pointsUpdateThreshold) + dist - pointsUpdateThreshold) / pointsUpdateThreshold) | 0;
                 addPoints(points);
             }
-            $scope.meters += dist;
+            $scope.distance += dist;
         }
         $scope.coordinates.latitude = position.coords.latitude;
         $scope.coordinates.longitude = position.coords.longitude;
         $scope.coordinates.altitude = position.coords.altitude;
         $scope.speed = position.coords.speed;
         $scope.accuracy = position.coords.accuracy;
+        updateSpeedProgress();
         if (positionUndefined) {
             updateSpeedLimit();
         }
@@ -88,13 +90,14 @@ function ProgressBarCtrl($interval, $scope, sensorsService, speedLimitsService) 
         $scope.acceleration.x = acceleration.x;
         $scope.acceleration.y = acceleration.y;
         $scope.acceleration.z = acceleration.z;
+        updateBrakingProgress();
+        updateAccelerationProgress();
     }
 
     function updateSpeedLimit() {
         speedLimitsService.getSpeedLimitAtPosition($scope.coordinates, $scope.accuracy)
             .then(function (speedLimit) {
-                $scope.speedLimit = undefined !== speedLimit ? speedLimit * 1000 : undefined;
-                $scope.loaded = true;
+                $scope.speedLimit = undefined !== speedLimit ? speedLimit / 3.6 : undefined;
             });
     }
 
@@ -121,5 +124,39 @@ function ProgressBarCtrl($interval, $scope, sensorsService, speedLimitsService) 
             $scope.points += points;
         }
         $scope.$apply();
+    }
+
+    function updateSpeedProgress() {
+        if (undefined === $scope.speedLimit) {
+            $scope.speedProgress += 0.5;
+        }
+        if (undefined !== $scope.speedLimit) {
+            if ($scope.speedLimit < $scope.speed) {
+                $scope.speedProgress -= 2;
+            } else {
+                $scope.speedProgress += 1;
+            }
+        }
+        if ($scope.speedProgress < 0) {
+            $scope.speedProgress = 0;
+        } else if ($scope.speedProgress > 100) {
+            $scope.speedProgress = 100;
+        }
+    }
+
+    function updateBrakingProgress() {
+        
+    }
+
+    function updateAccelerationProgress() {
+        if (norm($scope.acceleration) <= 10) {
+            $scope.accelerationProgress += 1;
+        } else {
+            $scope.accelerationProgress -= 2;
+        }
+    }
+
+    function norm(vector) {
+        return Math.sqrt(vector.x * vector.x + vector.y * vector.y + vector.z * vector.z);
     }
 }
