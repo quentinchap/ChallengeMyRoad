@@ -145,14 +145,16 @@ function ProgressBarCtrl($interval, $scope, sensorsService, speedLimitsService) 
     }
 
     function updateBrakingProgress() {
-        
+
     }
 
     function updateAccelerationProgress() {
-        if (norm($scope.acceleration) <= 10) {
-            $scope.accelerationProgress += 1;
-        } else {
-            $scope.accelerationProgress -= 2;
+        if ($scope.speed > 10 / 3.6) {
+            if (norm($scope.acceleration) <= 10) {
+                $scope.accelerationProgress += 0.001;
+            } else {
+                $scope.accelerationProgress -= 0.002;
+            }
         }
     }
 
