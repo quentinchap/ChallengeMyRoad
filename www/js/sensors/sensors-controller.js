@@ -5,6 +5,91 @@ SensorsCtrl.$inject = ['$interval', '$rootScope', 'sensorsService', 'speedLimits
 function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, maintenanceService) {
 
     if (!$rootScope.sensorsInitialized) {
+
+        $rootScope.challenges = [{
+                idChallenge: 1,
+                title: "Réduire sa vitesse",
+                detail: "Réduisez votre vitesse moyenne de 5 km/h sur ce trajet.",
+                gain: 100,
+                goalCriteria: "<=",
+                goalType: "km/h",
+                goalValue: 80,
+                type: "navigation",
+                icon:"mdi mdi-speedometer",
+                challengeUser: {
+                    idUser: 1,
+                    display: 1,
+                    state: 0
+                }
+            },
+
+          {
+            idChallenge: 2,
+            title: "Adapter votre conduite",
+            detail: "Adapter votre vitesse au temps pluvieux.",
+            gain: 50,
+            goalType: "OK/KO",
+            goalValue: "OK",
+            type: "meteo bad",
+            icon:"mdi mdi-weather-pouring",
+            challengeUser: {
+              idUser: 1,
+              display: 1,
+              state: 0
+            }
+
+          },
+            {
+                idChallenge: 3,
+                title: "Pression des pneus",
+                detail: "Veuilez effectuer la pression des pneus.",
+                gain: 50,
+                goalType: "OK/KO",
+                goalValue: "OK",
+                type: "navigation",
+              icon:"mdi mdi-car",
+                challengeUser: {
+                    idUser: 1,
+                    display: 1,
+                    state: 0
+                }
+
+            },
+
+          {
+            idChallenge: 4,
+            title: "Kilométrage du véhicule",
+            detail: "Veuilez indiquer le kilométrage du véhicule.",
+            gain: 50,
+            goalType: "OK/KO",
+            goalValue: "OK",
+            type: "navigation",
+            icon:"mdi mdi-pencil-box-outline",
+            challengeUser: {
+              idUser: 1,
+              display: 1,
+              state: 0
+            }
+
+          },
+          {
+            idChallenge: 5,
+            title: "Adopter une conduite souple",
+            detail: "Eviter les freinages, les ralentissements et utiliser le frein moteur permet un gain de carburant de 40%.",
+            gain: 50,
+            goalType: "OK/KO",
+            goalValue: "OK",
+            type: "navigation",
+            icon:"mdi mdi-tree",
+            challengeUser: {
+              idUser: 1,
+              display: 1,
+              state: 0
+            }
+
+          }
+        ];
+
         $rootScope.sensorsInitialized = true;
         $rootScope.loaded = false;
 
@@ -224,7 +309,6 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
         }
         $rootScope.$apply();
     }
-}
 // z positif desceleration
 // 6 = freinage brutal
 // seil vitesse frainage 
@@ -232,3 +316,8 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
 // seuil freinage superiieur
 // seuil 6-7
 // increment trop rapide.
+
+    function norm(vector) {
+        return Math.sqrt(vector.x * vector.x + vector.y * vector.y + vector.z * vector.z);
+    }
+}
