@@ -1,41 +1,42 @@
 angular.module('starter.challenges', []).controller('MaintenanceCtrl', MaintenanceCtrl);
 
-MaintenanceCtrl.$inject = [/*'$stateParams',*/'maintenanceService'];
-function MaintenanceCtrl(/*$stateParams, */maintenanceService) {
+MaintenanceCtrl.$inject = [/*'$stateParams',*/ '$rootScope', 'maintenanceService'];
+function MaintenanceCtrl(/*$stateParams,*/ $rootScope, maintenanceService) {
     var vm = this;
 
-    vm.challenge = maintenanceService.read(1);
-    /*
-    vm.challenge = {
-        "idChallenge" : 2,
-        title: 'Pression des pneus',
-        detail: 'Diminution adhérence + Augmentation conso + durée de vie des pneus réduite',
-        gain: 50,
-        "goalType" : "OK/KO",
-        "goalValue" : "OK",    
-        type: 'maintenance',
-        challengeUser: {
-            idUser: 1,
-            idChallenge: 1,
-            display: true,
-            state: 0
-        }
-    };*/
+    //$rootScope.challenges = maintenanceService.readAll();
+    
 
-    vm.displayChallenge = vm.challenge.challengeUser.display ? 'block' : 'none';
-    if (vm.challenge.challengeUser.state === 0) {
-        vm.challengeIcon = 'highlight_off';
-    } else {
-        vm.challengeIcon = 'check_circle';
+
+    if ($rootScope.challenges !== null) {
+        console.log($rootScope.challenges.length);
+        for (var i = 0; i < $rootScope.challenges.length; i++) {
+            if ($rootScope.challenges[i].challengeUser.state === 0) {
+                $rootScope.challenges[i].challengeUser.challengeIcon = 'highlight_off';
+            } else {
+                $rootScope.challenges[i].challengeUser.challengeIcon = 'check_circle';
+            }
+            
+        }
+
     }
     
-    vm.ok = function () {
-        vm.challenge.challengeUser.state = 1;
-        vm.challengeIcon = 'check_circle';
-    };
     
-    vm.later = function () {
-        vm.challenge.challengeUser.display = false;
+    vm.done = function (id) {
+        for (var i = 0; i < $rootScope.challenges.length; i++) {
+            if ($rootScope.challenges[i].idChallenge == id) {
+                $rootScope.challenges[i].challengeUser.state = 1;
+                $rootScope.challenges[i].challengeUser.challengeIcon = 'check_circle';
+            }
+        }
+    };
+
+    vm.later = function (id) {
+        for (var i = 0; i < $rootScope.challenges.length; i++) {
+            if ($rootScope.challenges[i].idChallenge == id) {            
+                $rootScope.challenges[i].challengeUser.display = false;
+            }
+        }
     };
 }
 
