@@ -10,35 +10,21 @@
   float: left;
 }
 
-#hexagon {
-	width: 100px;
-	height: 55px;
-	background: red;
-	position: relative;
-}
-#hexagon:before {
-	content: "";
-	position: absolute;
-	top: -25px;
-	left: 0;
-	width: 0;
-	height: 0;
-	border-left: 50px solid transparent;
-	border-right: 50px solid transparent;
-	border-bottom: 25px solid red;
-}
-#hexagon:after {
-	content: "";
-	position: absolute;
-	bottom: -25px;
-	left: 0;
-	width: 0;
-	height: 0;
-	border-left: 50px solid transparent;
-	border-right: 50px solid transparent;
-	border-top: 25px solid red;
+.hexagone
+{
+  width: 50%;
+  margin-left: 25%;
 }
 
+.points-counter{
+  position: absolute;
+  top: 20%;
+  width: 100%;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #3e2b12;
+}
 
 .progress-bars .points {
 
