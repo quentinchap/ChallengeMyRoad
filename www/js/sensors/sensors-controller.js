@@ -3,7 +3,6 @@ angular.module('starter.sensors')
 
 SensorsCtrl.$inject = ['$interval', '$rootScope', 'sensorsService', 'speedLimitsService', 'maintenanceService'];
 function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, maintenanceService) {
-    var pointsUpdateThreshold = 5;
 
     if (!$rootScope.sensorsInitialized) {
         $rootScope.sensorsInitialized = true;
@@ -34,7 +33,27 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
         $rootScope.windSpeed = undefined;
 
         $rootScope.speedLimit = undefined;
+        // DEMO
+        // $rootScope.speedLimit = 13.8;
     }
+
+    var pointsUpdateThreshold = 100;
+
+    var speedLimitIncrement = 1;
+    var speedLimitDecrement = 10;
+
+    var accelerationSpeedThreshold = 5;
+    var accelerationIntensityThreshold = -2;
+    var accelerationIncrement = 0.1
+    var accelerationDecrement = 1.0;
+
+    var brakingSpeedThreshold = 5;
+    var brakingIntensityThreshold = 5;
+    var brakingIncrement = 0.1;
+    var brakingDecrement = 1.0;
+
+    var overrideSpeedLimit = false;
+    var speedLimitOverride = 50.0;
 
     initialize();
 
@@ -63,11 +82,11 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
     }
 
     function registerWeatherListener() {
-        $interval(updateWeather, 10 * 1000);
+        $interval(updateWeather, 60 * 1000);
     }
 
     function registerSpeedLimitListener() {
-        $interval(updateSpeedLimit, 10 * 1000);
+        $interval(updateSpeedLimit, 30 * 1000);
     }
 
     function onPositionError(err) {
@@ -121,6 +140,10 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
     function updateSpeedLimit() {
         speedLimitsService.getSpeedLimitAtPosition($rootScope.coordinates, $rootScope.accuracy)
             .then(function (speedLimit) {
+                if (overrideSpeedLimit) {
+                    $rootScope.speedLimit = speedLimitOverride;
+                    return;
+                }
                 $rootScope.speedLimit = undefined !== speedLimit ? speedLimit / 3.6 : undefined;
             });
     }
@@ -152,13 +175,14 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
 
     function updateSpeedProgress() {
         if (undefined === $rootScope.speedLimit) {
-            $rootScope.speedProgress += 0.5;
+            //$rootScope.speedProgress += 0.5;
+            return;
         }
         if (undefined !== $rootScope.speedLimit) {
-            if ($rootScope.speedLimit < $rootScope.speed) {
-                $rootScope.speedProgress -= 2;
+            if ($rootScope.speed < $rootScope.speedLimit) {
+                $rootScope.speedProgress += speedLimitIncrement;
             } else {
-                $rootScope.speedProgress += 1;
+                $rootScope.speedProgress -= speedLimitDecrement;
             }
         }
         if ($rootScope.speedProgress < 0) {
@@ -170,11 +194,11 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
     }
 
     function updateBrakingProgress() {
-        if ($rootScope.speed > 10 / 3.6) {
-            if (Math.abs($rootScope.acceleration.x) <= 10) {
-                $rootScope.brakingProgress += 0.1;
+        if ($rootScope.speed > brakingSpeedThreshold / 3.6) {
+            if ($rootScope.acceleration.z <= brakingIntensityThreshold) {
+                $rootScope.brakingProgress += brakingIncrement;
             } else {
-                $rootScope.brakingProgress -= 0.2;
+                $rootScope.brakingProgress -= brakingDecrement;
             }
         }
         if ($rootScope.brakingProgress < 0) {
@@ -186,11 +210,11 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
     }
 
     function updateAccelerationProgress() {
-        if ($rootScope.speed > 10 / 3.6) {
-            if (norm($rootScope.acceleration) <= 10) {
-                $rootScope.accelerationProgress += 0.01;
+        if ($rootScope.speed > accelerationSpeedThreshold / 3.6) {
+            if ($rootScope.acceleration.z >= accelerationIntensityThreshold) {
+                $rootScope.accelerationProgress += accelerationIncrement;
             } else {
-                $rootScope.accelerationProgress -= 0.02;
+                $rootScope.accelerationProgress -= accelerationDecrement;
             }
         }
         if ($rootScope.accelerationProgress < 0) {
@@ -200,8 +224,11 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
         }
         $rootScope.$apply();
     }
-
-    function norm(vector) {
-        return Math.sqrt(vector.x * vector.x + vector.y * vector.y + vector.z * vector.z);
-    }
 }
+// z positif desceleration
+// 6 = freinage brutal
+// seil vitesse frainage 
+// acc oppose freinage
+// seuil freinage superiieur
+// seuil 6-7
+// increment trop rapide.
