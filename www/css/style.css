@@ -1,7 +1,42 @@
 md-toolbar.extra-tall {
-  height: 192px;
-  min-height: 192px;
-  max-height: 192px;
+  height: 60px;
+  min-height: 60px;
+  max-height: 60px;
+}
+
+
+.md-whiteframe-16dp {
+    max-width: 60px!important;
+    background-color: rgb(76,175,80);
+}
+
+
+.md-whiteframe-8dp {
+  background-color: rgb(76,175,80);
+}
+
+md-menu-content.md-default-theme, md-menu-content
+{
+  background-color: transparent;
+}
+
+.persoSideNav {
+  width: 60px;
+  min-width: 60px;
+}
+
+.persoSideNav md-menu-content{
+  width: 60px;
+  min-width: 60px;
+}
+
+.persoSideNav md-icon{
+  color: white;
+}
+
+.persoSideNav .md-button {
+  min-width: 60px!important;
+  width: 60px;
 }
 
 .challenge-progress {

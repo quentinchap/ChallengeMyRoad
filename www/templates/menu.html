@@ -1,22 +1,25 @@
 <md-content layout="row" flex>
-  <md-sidenav class="md-sidenav-left" md-component-id="sidebar" layout="column" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="16">
-    <md-toolbar class="extra-tall" layout="column">
-    </md-toolbar>
-    <md-content md-whiteframe="8" flex>
+  <md-sidenav class="md-sidenav-left persoSideNav" md-component-id="sidebar" md-disable-backdrop layout="column" md-is-locked-open="true" md-whiteframe="16">
+    <md-content md-whiteframe="8" flex="33">
       <md-menu-content>
         <md-menu-item>
+<<<<<<< Updated upstream
           <md-button ui-sref="app.challenges" ng-click="toggleSidenav('sidebar')">
             <md-icon aria-label="Challenges" md-font-library="material-icons">navigation</md-icon> Challenges
+=======
+          <md-button ui-sref="app.sensors" >
+            <md-icon aria-label="Challenges" md-font-library="material-icons">navigation</md-icon>
+>>>>>>> Stashed changes
           </md-button>
         </md-menu-item>
         <md-menu-item>
-          <md-button ui-sref="app.store" ng-click="toggleSidenav('sidebar')">
-            <md-icon aria-label="Store" md-font-library="material-icons">shop</md-icon> Store
+          <md-button ui-sref="app.store" >
+            <md-icon aria-label="Store" md-font-library="material-icons">shop</md-icon>
           </md-button>
         </md-menu-item>
         <md-menu-item>
-          <md-button ui-sref="app.settings" ng-click="toggleSidenav('sidebar')">
-            <md-icon aria-label="Paramètres" md-font-library="material-icons">settings</md-icon> Paramètres
+          <md-button ui-sref="app.settings" >
+            <md-icon aria-label="Paramètres" md-font-library="material-icons">settings</md-icon>
           </md-button>
         </md-menu-item>
       </md-menu-content>
@@ -24,6 +27,7 @@
   </md-sidenav>
 
   <md-content flex>
+<<<<<<< Updated upstream
     <md-toolbar md-whiteframe="1" >
       <div class="md-toolbar-tools">
         <md-button class="md-icon-button" ng-click="toggleSidenav('sidebar')" hide-gt-md>
@@ -31,6 +35,8 @@
         </md-button>
       </div>
     </md-toolbar>
+=======
+>>>>>>> Stashed changes
     <ui-view name="menuContent"></ui-view>
   </md-content>
 </md-content>
