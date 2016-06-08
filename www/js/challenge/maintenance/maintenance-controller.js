@@ -6,7 +6,7 @@ function MaintenanceCtrl(/*$stateParams,*/ $rootScope, maintenanceService) {
 
     //$rootScope.challenges = maintenanceService.readAll();
     
-
+    vm.challenges = $rootScope.challenges;
 
     if ($rootScope.challenges !== null) {
         console.log($rootScope.challenges.length);
