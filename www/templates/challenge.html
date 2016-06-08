@@ -1,17 +1,60 @@
 <md-content layout-padding flex ng-controller="MaintenanceCtrl as vm">
     <div layout="row">
-        <div flex ng-repeat="mychallenge in vm.challenges"> 
-            
-            <ec-maintenance title="{{ mychallenge.title }}" 
-                            detail="{{ mychallenge.detail }}" 
-                            gain="{{ mychallenge.gain }}"
-                            display="{{ mychallenge.challengeUser.display }}"
-                            icon="{{ mychallenge.challengeUser.challengeIcon }}"
-                            state="{{ mychallenge.challengeUser.state }}"
-                            challengeid="{{ mychallenge.idChallenge }}"
-                            thechallenge="mychallenge">
-            </ec-maintenance>
-        </div>
+      <div id="challenges">
+        <md-grid-list md-cols-xs="1" md-cols-sm="1" md-cols="2" md-row-height="2:1" md-gutter="24px" md-gutter-gt-sm="16px">
+          <md-grid-tile class="challenge navigation" layout="row">
+            <div class="backCard">
+              <md-icon md-font-library="material-icons">navigation</md-icon>
+              <span class="titleObj"> <span class="title">Réduire sa vitesse</span><br/> + 50 pts</span>
+              <md-grid-tile-footer>
+                <h3>Réduisez votre vitesse de 5km/h sur ce trajet.</h3>
+              </md-grid-tile-footer>
+            </div>
+          </md-grid-tile>
+
+          <md-grid-tile class="challenge meteo bad" layout="row">
+            <div class="backCard">
+              <i class="mdi mdi-weather-pouring"></i>
+              <span class="titleObj"> <span class="title">Adapter votre conduite.</span><br/> + 20 pts</span>
+              <md-grid-tile-footer>
+                <h3>Adaptez votre vitesse au temps pluvieux</h3>
+              </md-grid-tile-footer>
+            </div>
+          </md-grid-tile>
+
+          <md-grid-tile class="challenge meteo bad" layout="row">
+            <div class="backCard">
+              <i class="mdi mdi-weather-pouring"></i>
+              <span class="titleObj"> <span class="title">Adopter une conduite souple.</span><br/> + 100 pts</span>
+              <md-grid-tile-footer>
+                <h3>Eviter les freinages, les ralentissements et utiliser le frein moteur permet un gain de carburant de 40%.</h3>
+              </md-grid-tile-footer>
+            </div>
+          </md-grid-tile>
+
+          <md-grid-tile class="challenge meteo bad" layout="row">
+            <div class="backCard">
+              <i class="mdi mdi-weather-pouring"></i>
+              <span class="titleObj"> <span class="title">Adapter votre conduite.</span><br/> + 20 pts</span>
+              <md-grid-tile-footer>
+                <h3>Adaptez votre vitesse au temps pluvieux</h3>
+              </md-grid-tile-footer>
+            </div>
+          </md-grid-tile>
+
+          <md-grid-tile class="challenge meteo bad" layout="row">
+            <div class="backCard">
+              <i class="mdi mdi-weather-pouring"></i>
+              <span class="titleObj"> <span class="title">Adapter votre conduite.</span><br/> + 20 pts</span>
+              <md-grid-tile-footer>
+                <h3>Adaptez votre vitesse au temps pluvieux</h3>
+              </md-grid-tile-footer>
+            </div>
+          </md-grid-tile>
+
+
+
+        </md-grid-list>
+      </div>
     </div>
 </md-content>
-      

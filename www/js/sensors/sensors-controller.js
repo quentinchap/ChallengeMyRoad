@@ -6,11 +6,11 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
     var pointsUpdateThreshold = 5;
 
     if (!$rootScope.sensorsInitialized) {
-        
+
         $rootScope.challenges = [{
                 idChallenge: 1,
-                title: "Réduire sa vitesse de 5 km/h",
-                detail: "Réduisez votre vitesse moyenne de 5 km/h sur ce trajet. Réduire la vitesse d’une dizaine de kilomètres/heure ne vous mettra pas trop en retard et vous fera faire des economies",
+                title: "Réduire sa vitesse",
+                detail: "Réduisez votre vitesse moyenne de 5 km/h sur ce trajet.",
                 gain: 100,
                 goalCriteria: "<=",
                 goalType: "km/h",
@@ -22,10 +22,25 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
                     state: 0
                 }
             },
+          {
+            idChallenge: 2,
+            title: "Adapter votre conduite",
+            detail: "Adapter votre vitesse au temps pluvieux.",
+            gain: 50,
+            goalType: "OK/KO",
+            goalValue: "OK",
+            type: "maintenance",
+            challengeUser: {
+              idUser: 1,
+              display: 1,
+              state: 0
+            }
+
+          },
             {
-                idChallenge: 2,
+                idChallenge: 3,
                 title: "Pression des pneus",
-                detail: "Diminution adhérence + Augmentation conso + durée de vie des pneus réduite",
+                detail: "Veuilez effectuer la pression des pneus.",
                 gain: 50,
                 goalType: "OK/KO",
                 goalValue: "OK",
@@ -36,8 +51,41 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
                     state: 0
                 }
 
-            }];
-        
+            },
+          {
+            idChallenge: 4,
+            title: "Kilométrage du véhicule",
+            detail: "Veuilez indiquer le kilométrage du véhicule.",
+            gain: 50,
+            goalType: "OK/KO",
+            goalValue: "OK",
+            type: "maintenance",
+            challengeUser: {
+              idUser: 1,
+              display: 1,
+              state: 0
+            }
+
+          },
+          {
+            idChallenge: 5,
+            title: "Adopter une conduite souple",
+            detail: "Eviter les freinages, les ralentissements et utiliser le frein moteur permet un gain de carburant de 40%.",
+            gain: 50,
+            goalType: "OK/KO",
+            goalValue: "OK",
+            type: "maintenance",
+            challengeUser: {
+              idUser: 1,
+              display: 1,
+              state: 0
+            }
+
+          }
+
+
+        ];
+
         $rootScope.sensorsInitialized = true;
         $rootScope.loaded = false;
 
