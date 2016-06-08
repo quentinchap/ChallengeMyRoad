@@ -1,0 +1,31 @@
+<div id="contentView" ng-controller="EcoCtrl as vm">
+
+  <!--<ion-nav-title ng-controller="MaintenanceCtrl as vm">
+    Challenge n°{{ vm.challenge.id }}
+  </ion-nav-title>-->
+
+  <md-card>
+    <md-card-title>
+          <span class="md-headline" style="font-size:1.4em; font-color: green">
+              <i class="icon ion-trophy" style="font-color: green"></i>
+              {{ vm.challenge.title }}
+          </span>
+    </md-card-title>
+    <div class="item item-text-wrap">
+      {{ vm.challenge.detail }}
+    </div>
+    <div class="item item-divider">
+      <div>Votre progression actuelle: {{ vm.challenge.progress }}0%</div>
+      <div class="row">
+        <div class="col"
+             style="background-color:{{ n <= vm.challenge.progress?'green':'white' }}"
+             ng-repeat="n in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"></div>
+      </div>
+
+    </div>
+
+
+  </md-card>
+  <div eco-challenge></div>
+
+</div>
