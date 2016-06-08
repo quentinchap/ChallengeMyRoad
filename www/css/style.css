@@ -99,7 +99,6 @@ md-menu-content.md-default-theme, md-menu-content
 
 .loginScreen img{
   width: 30%;
-  margin-left: 15%;
 }
 
 .loginScreen .content{
@@ -112,9 +111,27 @@ md-menu-content.md-default-theme, md-menu-content
 #toolBarLogin
 {
   background-color: rgba(255,255,255,0.2);
+  padding-top: 20px;
 }
 
-#toolBarLogin
+#tileLogin
+{
+  background-color: rgba(255,255,255,0.6);
+  width: 80%;
+  margin-left: 10%;
+  text-align: center;
+  padding: 20px;
+
+}
+
+#tileLogin h2{
+  color: black;
+}
+
+
+#toolBarLogin h2
 {
 
+  font-size: 1.5em;
+  margin-bottom: 10px;
 }
