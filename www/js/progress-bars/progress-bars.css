@@ -18,7 +18,7 @@
 
 .points-counter{
   position: absolute;
-  top: 60px;
+  top: 3.5em;
   width: 100%;
   text-align: center;
   color: #3e2b12;
@@ -69,17 +69,17 @@ background: linear-gradient(to left, rgba(220,87,87,0.9) 0%,rgba(220,87,87,0) 10
 
 .backCard md-icon, .backCard i
 {
-  margin-top: 40px;
+  margin-top: 0.4em;
   margin-left: 20px;
 }
 
 .titleObj
 {
   float: right;
-  margin-top: 30px;
+  margin-top: 20px;
   text-align: right;
   margin-right: 10px;
-  font-size: 2em;
+  font-size: 1.5em;
   height: 100%;
   display: block;
   color: white;

@@ -1,4 +1,4 @@
-angular.module('starter.controllers', []).controller('LoginCtrl', LoginCtrl);
+angular.module('starter.controllers').controller('LoginCtrl', LoginCtrl);
 
 function LoginCtrl($scope, $state) {
   var vm = this;
@@ -64,4 +64,3 @@ function LoginCtrl($scope, $state) {
     });
   };
 }
-
