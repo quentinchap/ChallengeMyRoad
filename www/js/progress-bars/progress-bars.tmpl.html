@@ -11,17 +11,17 @@
             </div>
 
             <div class="progress-bars">
-              <div class="progressItem">
+              <div class="progressItem"  >
                 <span class="progress-bar-label">Vitesse</span>
-                <md-progress-linear md-mode="determinate" value="{{speedProgress}}"></md-progress-linear>
+                <md-progress-linear md-mode="determinate" value="{{speedProgress}}" ng-class="getColor(speedProgress)" ></md-progress-linear>
                 </div>
                 <div class="progressItem">
                 <span class="progress-bar-label">Freinage</span>
-                <md-progress-linear md-mode="determinate" value="{{brakingProgress}}"></md-progress-linear>
+                <md-progress-linear md-mode="determinate" value="{{brakingProgress}}" ng-class="getColor(brakingProgress)"></md-progress-linear>
                 </div>
                 <div class="progressItem">
                 <span class="progress-bar-label">Accélération</span>
-                <md-progress-linear md-mode="determinate" value="{{accelerationProgress}}"></md-progress-linear>
+                <md-progress-linear md-mode="determinate" value="{{accelerationProgress}}" ng-class="getColor(accelerationProgress)"></md-progress-linear>
                 </div>
             </div>
         </md-content>
