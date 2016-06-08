@@ -69,6 +69,16 @@ angular.module('starter', ['ionic', 'ngMaterial','ngCordovaOauth',
           }
         }
       })
+      .state('app.debug', {
+        url: '/debug',
+        authenticate: false,
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/debug.html',
+            controller: 'SensorsCtrl'
+          }
+        }
+      })
     ;
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/login');
