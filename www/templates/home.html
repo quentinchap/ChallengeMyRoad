@@ -1,6 +1,6 @@
 
-<div id="contentView" class=" animated slideInRight" >
-  <div class="headerHome card">
+<div id="contentView">
+  <div class="headerHome">
   <div class="circle">
 
     <div class="circleInt">
@@ -10,23 +10,15 @@
 
   </div>
   <div id="jauges">
-    <p ng-class="homeCtrl.getJaugeColor(homeCtrl.jauge.vitesse)">Vitesse
-    <progress max="100" value="{{homeCtrl.jauge.vitesse}}"></progress>
-    </p>
-    <p ng-class="homeCtrl.getJaugeColor(homeCtrl.jauge.acceleration)">Accéleration
-    <progress max="100" value="{{homeCtrl.jauge.acceleration}}"></progress>
-    </p>
-    <p ng-class="homeCtrl.getJaugeColor(homeCtrl.jauge.frein)">Freinage
-    <progress max="100" value="{{homeCtrl.jauge.frein}}"></progress>
-    </p>
+    <p>Vitesse</p>
+    <progress max="100" value="80"></progress>
   </div>
 </div>
 
   <div id="challenges">
-    <div class="card" style="float:left" ng-if="!homeCtrl.test">
+    <div class="card" style="float:left">
     <div class="item item-text-wrap" >
-      {{homeCtrl.test}}
-      <h1><a href ng-click="homeCtrl.test = true"> Pneumatique</a> </h1>
+      <h1> Pneumatique </h1>
       <img src="img/check.png"/>
       <p> Vérifier la pression de vos pneus?<a href>Oui</a> <a href>Non</a> <a href>Plus tard</a></p>
       <p class="point"> + 50 pts</p>
