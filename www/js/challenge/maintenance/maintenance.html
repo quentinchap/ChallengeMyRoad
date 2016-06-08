@@ -1,6 +1,6 @@
-<div id="contentView" ng-controller="ChallengesCtrl as vm">
+<div id="contentView" ng-controller="MaintenanceCtrl as vm">
     
-    <!--<ion-nav-title ng-controller="ChallengesCtrl as vm">
+    <!--<ion-nav-title ng-controller="MaintenanceCtrl as vm">
       Challenge n°{{ vm.challenge.id }}
     </ion-nav-title>-->
 
@@ -26,20 +26,7 @@
 
 
     </md-card>
-    <!--
-    <div class="bar bar-subheader">
-      <h2 class="title">Réduire sa vitesse</h2>
-    </div>
-    <ion-content ng-controller="ChallengesCtrl as vm" class="has-subheader">
-        Réduire sa vitesse aux limitations permet d'augmenter sa sécurité mais également réduire sa consommation.
-        Vous devez rouler 200 km sans faire d'excès de vitesse.    
-
-        Votre progression actuelle:
-
-        <i class="icon ion-ios-sunny-outline"></i>
-            <input type="range" name="volume" min="0" max="100" value="33">
-        <i class="icon ion-ios-sunny"></i>
-    </ion-content>-->
+    <div maintenance-challenge></div>
 
 </div>
       

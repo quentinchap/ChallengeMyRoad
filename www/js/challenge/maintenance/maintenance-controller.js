@@ -1,4 +1,5 @@
-angular.module('starter.challenges', []).controller('ChallengesCtrl', ChallengesCtrl);
+angular.module('starter.challenges', [])
+    .controller('ChallengesCtrl', ChallengesCtrl);
 
 ChallengesCtrl.$inject = ['$stateParams'/*'challengesService'*/]
 function ChallengesCtrl($stateParams/*challengesService*/) {
@@ -13,3 +14,10 @@ function ChallengesCtrl($stateParams/*challengesService*/) {
         progress: 8
     };
 }
+
+
+function maintenanceChallenge() {
+  return {
+    templateUrl: 'template/maintenance-challenge.html'
+  };
+};

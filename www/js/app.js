@@ -44,8 +44,8 @@ angular.module('starter', ['ionic', 'ngMaterial', 'starter.controllers', 'fireba
         url: '/challenges/:challengeId',
         views: {
           'menuContent': {
-            templateUrl: 'templates/challenges.html',
-            controller: 'ChallengesCtrl'
+            templateUrl: 'templates/challenge.html',
+            controller: 'MaintenanceCtrl'
           }
         }
       })
