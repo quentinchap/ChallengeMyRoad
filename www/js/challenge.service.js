@@ -1,8 +1,6 @@
 angular.module('starter.service', [])
 .factory('challengeService', function() {
 
-<<<<<<< HEAD
-=======
   var service = {
     getThreeRightChallenge:getThreeRightChallenge
   }
@@ -13,6 +11,4 @@ angular.module('starter.service', [])
   {
     return { title: "challenge 1"}
   }
-
->>>>>>> master
 })

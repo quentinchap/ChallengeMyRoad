@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-  .controller('AppCtrl', function ($scope, $ionicModal, $timeout, $firebaseArray) {
+  .controller('AppCtrl', function ($scope, $ionicModal, $timeout, $firebaseArray, $mdSidenav) {
     var ref = firebase.database().ref().child("bookItems");
     $scope.messages = $firebaseArray(ref);
 
@@ -31,4 +31,8 @@ angular.module('starter.controllers', [])
         $scope.closeLogin();
       }, 1000);
     };
+
+    $scope.toggleSidenav = function (menuId) {
+      $mdSidenav(menuId).toggle();
+    }
   });

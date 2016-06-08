@@ -8,15 +8,21 @@ function SensorsCtrl($interval, $scope, sensorsService, speedLimitsService) {
     var weatherWatch = undefined;
     var speedLimitWatch = undefined;
 
+    $scope.loaded = false;
+
     $scope.coordinates = {
         latitude: undefined,
-        longitude: undefined
+        longitude: undefined,
+        altitude: undefined
     };
+    $scope.speed = undefined;
     $scope.acceleration = {
         x: undefined,
         y: undefined,
         z: undefined
     };
+    $scope.accuracy = undefined;
+
     $scope.temperature = undefined;
     $scope.pressure = undefined;
     $scope.humidity = undefined;
@@ -65,6 +71,9 @@ function SensorsCtrl($interval, $scope, sensorsService, speedLimitsService) {
         var positionUndefined = undefined === $scope.latitude;
         $scope.coordinates.latitude = position.coords.latitude;
         $scope.coordinates.longitude = position.coords.longitude;
+        $scope.coordinates.altitude = position.coords.altitude;
+        $scope.speed = position.coords.speed;
+        $scope.accuracy = position.coords.accuracy;
         if (positionUndefined) {
             // Load position-based metrics
             updateWeather();
@@ -90,9 +99,10 @@ function SensorsCtrl($interval, $scope, sensorsService, speedLimitsService) {
     }
 
     function updateSpeedLimit() {
-        speedLimitsService.getSpeedLimitAtPosition($scope.coordinates, 20)
+        speedLimitsService.getSpeedLimitAtPosition($scope.coordinates, $scope.accuracy)
             .then(function (speedLimit) {
                 $scope.speedLimit = speedLimit;
+                $scope.loaded = true;
             });
     }
 }
