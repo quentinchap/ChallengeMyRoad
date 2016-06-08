@@ -138,3 +138,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
   font-size: 1.5em;
   margin-bottom: 10px;
 }
+
+#challengesStore
+{
+  width: 100%;
+}
