@@ -25,10 +25,6 @@ md-menu-content.md-default-theme, md-menu-content
   min-width: 60px;
 }
 
-#toolBarLogin
-{
-  background-color: rgba(255,255,255,0.4);
-}
 
 .persoSideNav md-menu-content{
   width: 60px;
@@ -93,6 +89,29 @@ md-menu-content.md-default-theme, md-menu-content
   background-image: url(../img/login.jpg);
   background-size: 100%;
   background-position: bottom;
+}
+
+.loginScreen h2
+{
+    color: white;
+    text-align: center;
+}
+
+.loginScreen img{
+  width: 30%;
+  margin-left: 15%;
+}
+
+.loginScreen .content{
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#toolBarLogin
+{
+  background-color: rgba(255,255,255,0.2);
 }
 
 #toolBarLogin
