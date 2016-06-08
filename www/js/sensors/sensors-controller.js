@@ -44,6 +44,7 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService) 
         registerAccelerationListener();
         registerWeatherListener();
         registerSpeedLimitListener();
+        $rootScope.loaded = true;
     }
 
     function registerPositionListener() {
@@ -119,7 +120,6 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService) 
         speedLimitsService.getSpeedLimitAtPosition($rootScope.coordinates, $rootScope.accuracy)
             .then(function (speedLimit) {
                 $rootScope.speedLimit = undefined !== speedLimit ? speedLimit / 3.6 : undefined;
-                $rootScope.loaded = true;
             });
     }
 
