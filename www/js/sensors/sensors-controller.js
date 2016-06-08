@@ -23,6 +23,7 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
                     state: 0
                 }
             },
+
           {
             idChallenge: 2,
             title: "Adapter votre conduite",
@@ -30,7 +31,8 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
             gain: 50,
             goalType: "OK/KO",
             goalValue: "OK",
-            type: "maintenance",
+            type: "meteo bad",
+            icon:"mdi mdi-weather-pouring",
             challengeUser: {
               idUser: 1,
               display: 1,
@@ -45,7 +47,8 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
                 gain: 50,
                 goalType: "OK/KO",
                 goalValue: "OK",
-                type: "maintenance",
+                type: "navigation",
+              icon:"mdi mdi-car",
                 challengeUser: {
                     idUser: 1,
                     display: 1,
@@ -53,6 +56,7 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
                 }
 
             },
+
           {
             idChallenge: 4,
             title: "Kilométrage du véhicule",
@@ -60,8 +64,8 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
             gain: 50,
             goalType: "OK/KO",
             goalValue: "OK",
-            type: "meteo bad",
-            icon:"mdi mdi-weather-pouring",
+            type: "navigation",
+            icon:"mdi mdi-pencil-box-outline",
             challengeUser: {
               idUser: 1,
               display: 1,
@@ -76,8 +80,8 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
             gain: 50,
             goalType: "OK/KO",
             goalValue: "OK",
-            type: "meteo bad",
-            icon:"mdi mdi-weather-pouring",
+            type: "navigation",
+            icon:"mdi mdi-tree",
             challengeUser: {
               idUser: 1,
               display: 1,
