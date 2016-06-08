@@ -1,6 +1,11 @@
-.challenge-ok {
+.challengeOk {
     color: rgb(76,175,80);
 }
-.challenge-ko {
+.challengeKo {
     color: red;
 }
+
+.challengeHide {
+    display: none;
+}
+

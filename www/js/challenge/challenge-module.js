@@ -1,1 +1,1 @@
-angular.module('starter.challenges', []);
+angular.module('starter.challenges', ['firebase']);

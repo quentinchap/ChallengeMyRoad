@@ -29,7 +29,7 @@
     </md-card>-->
     
     
-     <md-card md-theme="default" md-theme-watch>
+     <md-card md-theme="default" md-theme-watch ng-class="{challengeHide: !vm.challenge.challengeUser.display}">
         <md-card-title>
           <md-card-title-text>
             <span class="md-headline">{{ vm.challenge.title }}</span>
@@ -37,14 +37,14 @@
           </md-card-title-text>
           <md-card-title-media>
             <div class="md-media-lg card-media">
-                <i class="material-icons {{ vm.challengeIconColor }}">{{ vm.challengeIcon }}</i>
+                <i class="material-icons" ng-class="{challengeOk: vm.challenge.challengeUser.state != 0, challengeKo: vm.challenge.challengeUser.state == 0}">{{ vm.challengeIcon }}</i>
                 {{ vm.challenge.gain }} PTS
             </div>
           </md-card-title-media>
         </md-card-title>
-        <md-card-actions layout="row" layout-align="end center">
-          <md-button>OK</md-button>
-          <md-button>Plus tard</md-button>
+        <md-card-actions layout="row" layout-align="end center" ng-class="{challengeHide: vm.challenge.challengeUser.state != 0}">
+          <md-button ng-click="vm.ok()">OK</md-button>
+          <md-button ng-click="vm.later()">Plus tard</md-button>
         </md-card-actions>
       </md-card>
 
