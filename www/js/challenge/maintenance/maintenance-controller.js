@@ -17,5 +17,8 @@ function MaintenanceCtrl(/*$stateParams, /*maintenanceService*/) {
             state: 0
         }
     };
+
+    vm.challengeIcon = vm.challenge.challengeUser.state == 0?'highlight_off':'check_circle';
+    vm.challengeIconColor = vm.challenge.challengeUser.state == 0?'challenge-ko':'challenge-ok';
 }
 
