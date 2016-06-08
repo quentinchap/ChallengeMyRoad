@@ -21,11 +21,15 @@
   top: 20%;
   width: 100%;
   text-align: center;
-  font-size: 1.2em;
-  font-weight: bold;
   color: #3e2b12;
 }
 
 .progress-bars .points {
 
+}
+
+.points-counter .point
+{
+  font-size: 2em;
+  font-weight: bold;
 }
