@@ -3,16 +3,7 @@
         <md-progress-circular md-mode="indeterminate"></md-progress-circular>
     </section>
     <div ng-show="loaded">
-        <div layout-gt-xs="row" layout="column">
-            <div flex-gt-xs="33" flex="100">
-
-            </div>
-            <div flex-gt-xs="66" flex="100" class="challenge-progress" layout="column" layout-align="space-around stretch">
-                <md-progress-linear md-mode="determinate" value="64"></md-progress-linear>
-                <md-progress-linear md-mode="determinate" value="15"></md-progress-linear>
-                <md-progress-linear md-mode="determinate" value="32"></md-progress-linear>
-            </div>
-        </div>
+        <ec-progress-bars></ec-progress-bars>
         <div>
             <md-grid-list md-cols-xs="1" md-cols-sm="2" md-cols="3" md-row-height="2:1" md-gutter="24px" md-gutter-gt-sm="16px">
                 <md-grid-tile class="green-hue-1 challenge">
