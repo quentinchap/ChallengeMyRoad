@@ -122,3 +122,18 @@ md-progress-linear .md-container .md-bar{
   font-weight: bold;
   font-size: 1.2em;
 }
+
+.orange .md-bar
+{
+  background-color: orange!important;
+}
+
+.rouge .md-bar
+{
+  background-color: red;
+}
+
+.vert .md-bar
+{
+  background-color: green;
+}
