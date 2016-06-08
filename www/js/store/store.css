@@ -1,0 +1,25 @@
+.promo .backCard{
+  width: 100%;
+  height: 100%;
+  background: -moz-linear-gradient(right, rgba(3,155,229,1) 0%, rgba(3,155,229,0.4) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(right, rgba(3,155,229,1) 0%,rgba(3,155,229,0.4) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to left, rgba(3,155,229,1) 0%,rgba(3,155,229,0.4) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+}
+
+.promo
+{
+  background-image: url(../../img/mecanic.jpg);
+  background-size: 100%;
+  background-position: bottom;
+}
+
+.store
+{
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.store h3{
+  color: rgb(76,175,80);
+  font-size: 1.2em;
+}
