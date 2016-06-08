@@ -47,6 +47,16 @@ angular.module('starter', ['ionic', 'ngMaterial', 'starter.controllers', 'fireba
           }
         }
       })
+      .state('app.store', {
+        url: '/store',
+        authenticate: false,
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/store.html',
+            controller: 'StoreCtrl'
+          }
+        }
+      })
     .state('app.challenges', {
         url: '/challenges',
         authenticate: false,
