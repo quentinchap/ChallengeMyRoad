@@ -97,7 +97,10 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
     }
 
     function onAccelerationUpdate(event) {
-        var acceleration = event.accelerationIncludingGravity;
+        var acceleration = event.acceleration;
+        if (null === acceleration.x) {
+            acceleration = event.accelerationIncludingGravity;
+        }
         $rootScope.acceleration.x = acceleration.x;
         $rootScope.acceleration.y = acceleration.y;
         $rootScope.acceleration.z = acceleration.z;
@@ -163,10 +166,23 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
         } else if ($rootScope.speedProgress > 100) {
             $rootScope.speedProgress = 100;
         }
+        $rootScope.$apply();
     }
 
     function updateBrakingProgress() {
-
+        if ($rootScope.speed > 10 / 3.6) {
+            if (Math.abs($rootScope.acceleration.x) <= 10) {
+                $rootScope.brakingProgress += 0.1;
+            } else {
+                $rootScope.brakingProgress -= 0.2;
+            }
+        }
+        if ($rootScope.brakingProgress < 0) {
+            $rootScope.brakingProgress = 0;
+        } else if ($rootScope.brakingProgress > 100) {
+            $rootScope.brakingProgress = 100;
+        }
+        $rootScope.$apply();
     }
 
     function updateAccelerationProgress() {
@@ -182,6 +198,7 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
         } else if ($rootScope.accelerationProgress > 100) {
             $rootScope.accelerationProgress = 100;
         }
+        $rootScope.$apply();
     }
 
     function norm(vector) {
