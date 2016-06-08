@@ -1,9 +1,9 @@
-<md-content layout-padding flex class="animated slideInRight" style="animation-duration: 0.5s;-webkit-transform: translateZ(0);">
+<md-content layout-padding flex >
     <section ng-hide="loaded" layout-align="center center" flex layout="column">
         <md-progress-circular md-mode="indeterminate"></md-progress-circular>
     </section>
 
-    <div ng-show="loaded" style="height:100%" >
+    <div ng-show="loaded" style="height:100%" class="animated slideInRight" style="animation-duration: 0.5s;">
         <ec-progress-bars ></ec-progress-bars>
         <div id="challenges" >
 
