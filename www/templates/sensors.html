@@ -14,13 +14,12 @@
             <span class="titleObj"> <span class="title"> {{ challenges[0].title }}</span><br/> +  {{ challenges[0].gain }} pts</span>
             <md-grid-tile-footer>
               <h3> {{ challenges[0].detail }}</h3>
+                <md-progress-linear md-mode="determinate" value="{{speedProgress}}" ng-class="getColor(speedProgress)" ></md-progress-linear>              
             </md-grid-tile-footer>
           </div>
         </md-grid-tile>
 
-<<<<<<< HEAD
- 
-                <md-grid-tile class="challenge {{ challenges[4].type }}" layout="row">
+                <md-grid-tile class="challenge {{ challenges[4].type }}" layout="row" ng-click="showAlert($event, challenges[4].advise)">
                   <div class="backCard">
                     <i class="{{ challenges[4].icon }}"></i>
                     <span class="titleObj"> 
@@ -34,19 +33,6 @@
                 </md-grid-tile>
             </md-grid-list>
         </div>
-=======
-        <md-grid-tile class="challenge {{ challenges[4].type }}" layout="row" ng-click="showAlert($event, challenges[4].advise)">
-          <div class="backCard">
-            <i class="{{ challenges[4].icon }}"></i>
-            <span class="titleObj"> <span class="title"> {{ challenges[4].title }}</span><br/> +  {{ challenges[4].gain }} pts</span>
-            <md-grid-tile-footer>
-              <h3>{{ challenges[4].detail }}</h3>
-            </md-grid-tile-footer>
-          </div>
-        </md-grid-tile>
-
-      </md-grid-list>
->>>>>>> 1c1c2a703b6af4580415747ed2b9399f75fad767
     </div>
   </div>
 </md-content>
