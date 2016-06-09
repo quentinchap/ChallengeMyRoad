@@ -1,98 +1,105 @@
 angular.module('starter.sensors')
     .controller('SensorsCtrl', SensorsCtrl);
 
-SensorsCtrl.$inject = ['$interval', '$rootScope', 'sensorsService', 'speedLimitsService', 'maintenanceService'];
-function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, maintenanceService) {
+SensorsCtrl.$inject = ['$interval', '$rootScope', 'sensorsService', 'speedLimitsService', 'maintenanceService', '$mdDialog'];
+function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, maintenanceService, $mdDialog) {
 
     $rootScope.challengeProgress = 0;
     $rootScope.challengeDuration = 3*60*3600; // 3h
     $rootScope.challenge2Progress = 0;
     $interval(function() { $rootScope.challengeProgress += 1; $rootScope.challenge2Progress =$rootScope.challengeProgress /2 }, $rootScope.challengeDuration/100, 100);
 
-    
+
     if (!$rootScope.sensorsInitialized) {
 
-        $rootScope.challenges = [{
-            idChallenge: 1,
-            title: "Réduire sa vitesse",
-            detail: "Réduisez votre vitesse moyenne de 5 km/h sur ce trajet.",
-            gain: 100,
-            goalCriteria: "<=",
-            goalType: "km/h",
-            goalValue: 80,
-            type: "navigation",
-            icon: "mdi mdi-speedometer",
-            challengeUser: {
-                idUser: 1,
-                display: 1,
-                state: 0
-            }
+      $rootScope.challenges = [{
+        idChallenge: 1,
+        title: "Réduire sa vitesse",
+        detail: "Réduisez votre vitesse moyenne de 5 km/h sur ce trajet.",
+        gain: 100,
+        goalCriteria: "<=",
+        goalType: "km/h",
+        goalValue: 80,
+        type: "navigation",
+        icon:"mdi mdi-speedometer",
+        advise:"Réduire la vitesse d’une dizaine de kilomètres/heure ne vous mettra pas trop en retard et vous fera faire des economies. Exemples : - 30 km parcourus à 80 km/h de moyenne (22min30s) plutôt que 90 km/h (20min), augmente votre trajet de 2 minutes 30 secondes. - 100 km parcourus à 80 km/h de moyenne (1h15min) plutôt que 90 km/h (1h06min40s), augmente votre trajet de 8 minutes 20 secondes.",
+        challengeUser: {
+          idUser: 1,
+          display: 1,
+          state: 0
+        }
+      },
+
+        {
+          idChallenge: 2,
+          title: "Adapter votre conduite",
+          detail: "Adapter votre vitesse au temps pluvieux.",
+          gain: 50,
+          goalType: "OK/KO",
+          goalValue: "OK",
+          type: "meteo bad",
+          icon:"mdi mdi-weather-pouring",
+          advise:"Par temps de pluis, soyez vigilant et adaptez votre conduite en fonction.",
+          challengeUser: {
+            idUser: 1,
+            display: 1,
+            state: 0
+          }
+
+        },
+        {
+          idChallenge: 3,
+          title: "Pression des pneus",
+          detail: "Veuilez effectuer la pression des pneus.",
+          gain: 50,
+          goalType: "OK/KO",
+          goalValue: "OK",
+          type: "navigation",
+          advise: "Un pneu perd naturellement de la pression et celle-ci varie selon la température. Il est donc recommandé de vérifier la pression de vos pneus au moins une fois par mois et avant un long trajet. Pensez à vérifier également la roue de secours.",
+          icon:"mdi mdi-car",
+          challengeUser: {
+            idUser: 1,
+            display: 1,
+            state: 0
+          }
+
         },
 
-            {
-                idChallenge: 2,
-                title: "Adapter votre conduite",
-                detail: "Adapter votre vitesse au temps pluvieux.",
-                gain: 50,
-                goalType: "OK/KO",
-                goalValue: "OK",
-                type: "meteo bad",
-                icon: "mdi mdi-weather-pouring",
-                challengeUser: {
-                    idUser: 1,
-                    display: 1,
-                    state: 0
-                }
+        {
+          idChallenge: 4,
+          title: "Kilométrage du véhicule",
+          detail: "Veuilez indiquer le kilométrage du véhicule.",
+          gain: 50,
+          goalType: "OK/KO",
+          goalValue: "OK",
+          type: "navigation",
+          icon:"mdi mdi-pencil-box-outline",
+          advise:"Cette information améliore la qualité de nos prévisions personnalisés.",
+          challengeUser: {
+            idUser: 1,
+            display: 1,
+            state: 0
+          }
 
-            },
-            {
-                idChallenge: 3,
-                title: "Pression des pneus",
-                detail: "Veuilez effectuer la pression des pneus.",
-                gain: 50,
-                goalType: "OK/KO",
-                goalValue: "OK",
-                type: "navigation",
-                icon: "mdi mdi-car",
-                challengeUser: {
-                    idUser: 1,
-                    display: 1,
-                    state: 0
-                }
+        },
+        {
+          idChallenge: 5,
+          title: "Adopter une conduite souple",
+          detail: "Eviter les freinages, les ralentissements et utiliser le frein moteur permet un gain de carburant de 40%.",
+          gain: 50,
+          goalType: "OK/KO",
+          goalValue: "OK",
+          type: "navigation",
+          icon:"mdi mdi-tree",
+          advise:"Une conduite souple et sûre permet un gain de carburant de 40 % : éviter les freinages, les changements de rapports inutiles (20% d'économies), anticiper les ralentissements, éviter les accélérations intempestives et souvent inutiles, utiliser le frein moteur en décélérant pied levé avec une vitesse enclenchée.",
+          challengeUser: {
+            idUser: 1,
+            display: 1,
+            state: 0
+          }
 
-            },
-
-            {
-                idChallenge: 4,
-                title: "Kilométrage du véhicule",
-                detail: "Veuilez indiquer le kilométrage du véhicule.",
-                gain: 50,
-                goalType: "OK/KO",
-                goalValue: "OK",
-                type: "navigation",
-                icon: "mdi mdi-pencil-box-outline",
-                challengeUser: {
-                    idUser: 1,
-                    display: 1,
-                    state: 0
-                }
-            },
-            {
-                idChallenge: 5,
-                title: "Conduite souple",
-                detail: "Eviter les freinages, les ralentissements et utiliser le frein moteur permet un gain de carburant de 40%.",
-                gain: 50,
-                goalType: "OK/KO",
-                goalValue: "OK",
-                type: "navigation",
-                icon: "mdi mdi-tree",
-                challengeUser: {
-                    idUser: 1,
-                    display: 1,
-                    state: 0
-                }
-            }
-        ];
+        }
+      ];
 
         console.log("Init");
         $rootScope.sensorsInitialized = true;
@@ -314,4 +321,19 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
             $rootScope.accelerationProgress = 100;
         }
     }
+
+    $rootScope.showAlert = function(ev, advise) {
+      // Appending dialog to document.body to cover sidenav in docs app
+      // Modal dialogs should fully cover application
+      // to prevent interaction outside of dialog
+      $mdDialog.show(
+        $mdDialog.alert()
+          .parent(angular.element(document.querySelector('#popupContainer')))
+          .clickOutsideToClose(true)
+          .title('A propos du challenge')
+          .textContent(advise)
+          .ok('OK')
+          .targetEvent(ev)
+      );
+    };
 }
