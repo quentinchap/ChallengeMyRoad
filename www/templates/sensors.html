@@ -12,8 +12,8 @@
             <i class="{{ challenges[0].icon }}"></i>
             <span class="titleObj"> <span class="title"> {{ challenges[0].title }}</span><br/> +  {{ challenges[0].gain }} pts</span>
             <md-grid-tile-footer>
-               <h3> {{ challenges[0].detail }}</h3>
-               <md-progress-linear md-mode="determinate" value="{{speedProgress}}" ng-class="getColor(speedProgress)" ></md-progress-linear>              
+              <h3> {{ challenges[0].detail }}</h3>
+                <md-progress-linear md-mode="determinate" value="{{challengeProgress}}" ng-class="getColor(challengeProgress)" ></md-progress-linear>              
             </md-grid-tile-footer>
           </div>
           <div class="carddiv" class="grayedout" ng-show="challenges[0].challengeUser.state != 0" style="background-color: white"></div>            

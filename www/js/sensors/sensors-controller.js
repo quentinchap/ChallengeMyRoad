@@ -4,116 +4,31 @@ angular.module('starter.sensors')
 SensorsCtrl.$inject = ['$interval', '$rootScope', 'sensorsService', 'speedLimitsService', 'maintenanceService', '$mdDialog'];
 function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, maintenanceService, $mdDialog) {
 
-    $rootScope.challengeProgress = 0;
-    $rootScope.challengeDuration = 2*60*1000; // 1h
+    if (!$rootScope.sensorsInitialized) {
+
+        $rootScope.challengeProgress = 0;
+        $rootScope.challengeDuration = 30; // 1h
+        $interval(progress, 1000, $rootScope.challengeDuration).then(progressEnd);
+        function progress() {
+            if ($rootScope.violentBrakes > 3) {
+                $rootScope.challenges[0].state = 2;
+                return;
+            }
+            $rootScope.challengeProgress += (100 / $rootScope.challengeDuration);
+        }
+        function progressEnd() {
+            $rootScope.challenges[0].state = 1;
+        }
     $rootScope.progressStart = function () {
         $rootScope.challengeProgress = 0;
         $rootScope.progressInterval = $interval(progress, $rootScope.challengeDuration/100, 100);
         $rootScope.progressInterval.then(progressEnd);
     };
-    function progress() {
-        $rootScope.challengeProgress += 1;
-    }
-    function progressEnd() {
-
-        $rootScope.challenges[0].state = 1;
-    }
     $rootScope.progressReset = function () {
         $rootScope.challenges[0].state = 0;
         $rootScope.challengeProgress = 0;
         $interval.cancel($rootScope.progressInterval);
     }
-
-    if (!$rootScope.sensorsInitialized) {
-
-      $rootScope.challenges = [{
-        idChallenge: 1,
-        title: "Réduire sa vitesse",
-        detail: "Réduisez votre vitesse moyenne de 5 km/h sur ce trajet.",
-        gain: 100,
-        goalCriteria: "<=",
-        goalType: "km/h",
-        goalValue: 80,
-        type: "navigation",
-        icon:"mdi mdi-speedometer",
-        advise:"Réduire la vitesse d’une dizaine de kilomètres/heure ne vous mettra pas trop en retard et vous fera faire des economies. Exemples : - 30 km parcourus à 80 km/h de moyenne (22min30s) plutôt que 90 km/h (20min), augmente votre trajet de 2 minutes 30 secondes. - 100 km parcourus à 80 km/h de moyenne (1h15min) plutôt que 90 km/h (1h06min40s), augmente votre trajet de 8 minutes 20 secondes.",
-        challengeUser: {
-          idUser: 1,
-          display: 1,
-          state: 0
-        }
-      },
-
-        {
-          idChallenge: 2,
-          title: "Adapter votre conduite",
-          detail: "Adapter votre vitesse au temps pluvieux.",
-          gain: 50,
-          goalType: "OK/KO",
-          goalValue: "OK",
-          type: "meteo bad",
-          icon:"mdi mdi-weather-pouring",
-          advise:"Par temps de pluis, soyez vigilant et adaptez votre conduite en fonction.",
-          challengeUser: {
-            idUser: 1,
-            display: 1,
-            state: 0
-          }
-
-        },
-        {
-          idChallenge: 3,
-          title: "Pression des pneus",
-          detail: "Veuilez effectuer la pression des pneus.",
-          gain: 50,
-          goalType: "OK/KO",
-          goalValue: "OK",
-          type: "mecanic",
-          advise: "Un pneu perd naturellement de la pression et celle-ci varie selon la température. Il est donc recommandé de vérifier la pression de vos pneus au moins une fois par mois et avant un long trajet. Pensez à vérifier également la roue de secours.",
-          icon:"mdi mdi-car",
-          challengeUser: {
-            idUser: 1,
-            display: 1,
-            state: 0
-          }
-
-        },
-
-        {
-          idChallenge: 4,
-          title: "Kilométrage du véhicule",
-          detail: "Veuilez indiquer le kilométrage du véhicule.",
-          gain: 50,
-          goalType: "OK/KO",
-          goalValue: "OK",
-          type: "smartphone",
-          icon:"mdi mdi-pencil-box-outline",
-          advise:"Cette information améliore la qualité de nos prévisions personnalisés.",
-          challengeUser: {
-            idUser: 1,
-            display: 1,
-            state: 0
-          }
-
-        },
-        {
-          idChallenge: 5,
-          title: "Adopter une conduite souple",
-          detail: "Eviter les freinages, les ralentissements et utiliser le frein moteur permet un gain de carburant de 40%.",
-          gain: 50,
-          goalType: "OK/KO",
-          goalValue: "OK",
-          type: "nature",
-          icon:"mdi mdi-tree",
-          advise:"Une conduite souple et sûre permet un gain de carburant de 40 % : éviter les freinages, les changements de rapports inutiles (20% d'économies), anticiper les ralentissements, éviter les accélérations intempestives et souvent inutiles, utiliser le frein moteur en décélérant pied levé avec une vitesse enclenchée.",
-          challengeUser: {
-            idUser: 1,
-            display: 1,
-            state: 0
-          }
-
-        }
-      ];
 
         console.log("Init");
         $rootScope.sensorsInitialized = true;
@@ -165,6 +80,11 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
 
         $rootScope.overrideSpeedLimit = true;
         $rootScope.speedLimitOverride = 13.8;
+
+        $rootScope.driving = false;
+        $rootScope.brakes = 0;
+        $rootScope.violentBrakes = 0;
+        $rootScope.violentBraking = false;
 
         initialize();
     }
@@ -291,6 +211,7 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
 
     function updateSpeedProgress() {
         if ($rootScope.speed > $rootScope.accelerationSpeedThreshold / 3.6) {
+            $rootScope.driving = true;
             if (undefined !== $rootScope.speedLimit) {
                 if ($rootScope.speed < $rootScope.speedLimit) {
                     $rootScope.speedProgress += speedLimitIncrement;
@@ -303,6 +224,11 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
             } else if ($rootScope.speedProgress > 100) {
                 $rootScope.speedProgress = 100;
             }
+        } else {
+            if ($rootScope.driving) {
+                $rootScope.driving = false;
+                $rootScope.brakes += 1;
+            }
         }
     }
 
@@ -310,8 +236,15 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
         if ($rootScope.speed > $rootScope.brakingSpeedThreshold / 3.6) {
             if ($rootScope.acceleration.z <= $rootScope.brakingIntensityThreshold && $rootScope.acceleration.z >= $rootScope.accelerationIntensityThreshold) {
                 $rootScope.brakingProgress += $rootScope.brakingIncrement;
+                if ($rootScope.violentBraking && $rootScope.brakingProgress >= 20) {
+                    $rootScope.violentBraking = false;
+                }
             } else if ($rootScope.acceleration.z > $rootScope.brakingIntensityThreshold) {
                 $rootScope.brakingProgress -= $rootScope.brakingDecrement;
+                if ($rootScope.brakingProgress < 20 && !$rootScope.violentBraking) {
+                    $rootScope.violentBraking = true;
+                    $rootScope.violentBrakes += 1;
+                }
             }
         }
         if ($rootScope.brakingProgress < 0) {
