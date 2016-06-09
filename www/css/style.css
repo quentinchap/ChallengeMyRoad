@@ -150,3 +150,18 @@ md-menu-content.md-default-theme, md-menu-content
 {
   width: 100%;
 }
+
+.grayedout {
+    opacity: 0.7;
+}
+
+.carddiv {
+    height:100%;width:100%;position:absolute;display:flex;align-items:center;left:0px;justify-content:center;
+}
+
+.colorgreen {
+    color: rgb(76,175,80)!important;
+}
+.colorred {
+    color: red!important;
+}
