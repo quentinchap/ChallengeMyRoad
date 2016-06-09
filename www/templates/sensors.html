@@ -1,11 +1,11 @@
-<md-content layout-padding flex class="animated slideInRight" style="animation-duration: 0.5s;">
+<md-content layout-padding flex >
     <section ng-hide="loaded" layout-align="center center" flex layout="column">
         <md-progress-circular md-mode="indeterminate"></md-progress-circular>
     </section>
 
     <div ng-show="loaded" style="height:100%" >
-        <ec-progress-bars ></ec-progress-bars>
-        <div id="challenges" >
+        <ec-progress-bars></ec-progress-bars>
+        <div id="challenges" class="animated fadeInUp" style="animation-duration: 1s;">
 
             <md-grid-list md-cols-xs="1" md-cols-sm="1" md-cols="1" md-row-height="7:4" md-gutter="10px" md-gutter-gt-sm="10px">
                 <md-grid-tile class="challenge {{ challenges[0].type }}" layout="row">

@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'ngMaterial','ngCordovaOauth',
+angular.module('starter', ['ionic', 'ngMaterial','ngAnimate','ngCordovaOauth',
 'starter.controllers', 'firebase', 'starter.sensors',
 'starter.challenges', 'starter.progress-bars'])
 
@@ -74,8 +74,7 @@ angular.module('starter', ['ionic', 'ngMaterial','ngCordovaOauth',
         authenticate: false,
         views: {
           'menuContent': {
-            templateUrl: 'templates/debug.html',
-            controller: 'SensorsCtrl'
+            templateUrl: 'templates/debug.html'
           }
         }
       })

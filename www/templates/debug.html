@@ -1,4 +1,4 @@
-<md-content layout-padding flex style="font-family: monospace">
+<md-content layout-padding flex>
     <label>Coordinates
         <span>{{coordinates.latitude.toFixed(2)}}, {{coordinates.longitude.toFixed(2)}}, {{coordinates.altitude.toFixed(2)}}</span>
     </label>
@@ -54,4 +54,48 @@
     <label>Wind speed
         <span>{{windSpeed}}</span>
     </label>
+    <div>
+        <md-input-container>
+            <label>Acceleration speed threshold</label>
+            <input ng-model="accelerationSpeedThreshold" type="number">
+        </md-input-container>
+        <md-input-container>
+            <label>Acceleration intensity threshold</label>
+            <input ng-model="accelerationIntensityThreshold" type="number">
+        </md-input-container>
+        <md-input-container>
+            <label>Acceleration increment</label>
+            <input ng-model="accelerationIncrement" type="number">
+        </md-input-container>
+        <md-input-container>
+            <label>Acceleration decrement</label>
+            <input ng-model="accelerationDecrement" type="number">
+        </md-input-container>
+    </div>
+    <div>
+        <md-input-container>
+            <label>Breaking speed threshold</label>
+            <input ng-model="brakingSpeedThreshold" type="number">
+        </md-input-container>
+        <md-input-container>
+            <label>Breaking intensity threshold</label>
+            <input ng-model="brakingIntensityThreshold" type="number">
+        </md-input-container>
+        <md-input-container>
+            <label>Breaking increment</label>
+            <input ng-model="brakingIncrement" type="number">
+        </md-input-container>
+        <md-input-container>
+            <label>Breaking decrement</label>
+            <input ng-model="brakingDecrement" type="number">
+        </md-input-container>
+    </div>
+    <div>
+        <label>Override</label>
+        <md-switch ng-model="overrideSpeedLimit"></md-switch>
+        <md-input-container>
+            <label>Override speed</label>
+            <input ng-model="speedLimitOverride" type="number">
+        </md-input-container>
+    </div>
 </md-content>

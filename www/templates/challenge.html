@@ -2,7 +2,22 @@
     <div layout="row">
       <div id="challenges" style="width:100%;">
         <md-grid-list md-cols-xs="2" md-cols-sm="2" md-cols="2" md-row-height="2:1" md-gutter="24px" md-gutter-gt-sm="16px">
-          <md-grid-tile class="challenge {{ challenges[0].type }}" layout="row">
+          <md-grid-tile
+          ng-repeat="challenge in challenges"
+          class="animated fadeInUp
+ challenge {{ challenge.type }}"
+          ng-style="{'animation-delay': '0.'+$index+'s'};"
+          layout="row">
+            <div class="backCard " ng-click="detail = !detail">
+              <i class="{{ challenge.icon }}"></i>
+              <span class="titleObj"> <span class="title">{{ challenge.title }}</span><br/> + {{ challenge.gain }} pts</span>
+              <md-grid-tile-footer ng-if="detail" class="animated fadeInUp" >
+                <h3>{{ challenge.detail }}</h3>
+              </md-grid-tile-footer>
+            </div>
+          </md-grid-tile>
+
+          <!--<md-grid-tile class="challenge {{ challenges[0].type }}" layout="row">
             <div class="backCard">
               <i class="{{ challenges[0].icon }}"></i>
               <span class="titleObj"> <span class="title">{{ challenges[0].title }}</span><br/> + {{ challenges[0].gain }} pts</span>
@@ -50,7 +65,7 @@
                 <h3>{{ challenges[4].detail }}</h3>
               </md-grid-tile-footer>
             </div>
-          </md-grid-tile>
+          </md-grid-tile>-->
 
         </md-grid-list>
       </div>

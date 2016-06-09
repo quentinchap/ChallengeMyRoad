@@ -1,11 +1,11 @@
-<div id="progressBar">
+<div id="progressBar" class="animated fadeInDown" style="animation-duration: 1s;">
     <md-card class="progress-bars-card">
         <md-content ng-hide="loaded" layout-align="center center" flex layout="column">
             <md-progress-circular md-mode="indeterminate"></md-progress-circular>
         </md-content>
         <md-content ng-show="loaded" flex layout="column">
             <div class="points">
-              <img class="hexagone" src="./img/hexagone-{{getColor((speedProgress+brakingProgress+accelerationProgress)/3)}}.png">
+              <img class="hexagone" src="./img/hexagone-{{getColor((displayedSpeedProgress+displayedBrakingProgress+displayedAccelerationProgress)/3)}}.png">
                 <i class="mei mei-hexagon-outline"></i>
                 <span class="points-counter"><span class="point">+{{points}} </span><div class="points-word">POINTS</div></span>
             </div>
@@ -13,15 +13,15 @@
             <div class="progress-bars">
               <div class="progressItem"  >
                 <span class="progress-bar-label">Vitesse</span>
-                <md-progress-linear md-mode="determinate" value="{{speedProgress}}" ng-class="getColor(speedProgress)" ></md-progress-linear>
+                <md-progress-linear md-mode="determinate" value="{{displayedSpeedProgress}}" ng-class="getColor(displayedSpeedProgress)" ></md-progress-linear>
                 </div>
                 <div class="progressItem">
                 <span class="progress-bar-label">Freinage</span>
-                <md-progress-linear md-mode="determinate" value="{{brakingProgress}}" ng-class="getColor(brakingProgress)"></md-progress-linear>
+                <md-progress-linear md-mode="determinate" value="{{displayedBrakingProgress}}" ng-class="getColor(displayedBrakingProgress)"></md-progress-linear>
                 </div>
                 <div class="progressItem">
                 <span class="progress-bar-label">Accélération</span>
-                <md-progress-linear md-mode="determinate" value="{{accelerationProgress}}" ng-class="getColor(accelerationProgress)"></md-progress-linear>
+                <md-progress-linear md-mode="determinate" value="{{displayedAccelerationProgress}}" ng-class="getColor(displayedAccelerationProgress)"></md-progress-linear>
                 </div>
             </div>
         </md-content>
