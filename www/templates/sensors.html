@@ -6,7 +6,6 @@
   <div ng-show="loaded" style="height:100%" >
     <ec-progress-bars ></ec-progress-bars>
     <div id="challenges" >
-
       <md-grid-list md-cols-xs="1" md-cols-sm="1" md-cols="1" md-row-height="2:1" md-gutter="24px" md-gutter-gt-sm="16px">
         <md-grid-tile class="challenge {{ challenges[0].type }}" layout="row" ng-click="showAlert($event, challenges[0].advise)">
           <div class="backCard">
@@ -17,22 +16,29 @@
                 <md-progress-linear md-mode="determinate" value="{{challengeProgress}}" ng-class="getColor(challengeProgress)" ></md-progress-linear>              
             </md-grid-tile-footer>
           </div>
+          <div class="carddiv" class="grayedout" ng-show="challenges[0].challengeUser.state != 0" style="background-color: white"></div>            
+          <div class="carddiv" ng-show="challenges[0].challengeUser.state == 1">
+            <i class="material-icons colorgreen">check_circle</i>
+          </div>
+          <div class="carddiv" ng-show="challenges[0].challengeUser.state == -1">
+            <i class="material-icons colorred">highlight_off</i>
+          </div>
         </md-grid-tile>
 
-                <md-grid-tile class="challenge {{ challenges[4].type }}" layout="row" ng-click="showAlert($event, challenges[4].advise)">
-                  <div class="backCard">
-                    <i class="{{ challenges[4].icon }}"></i>
-                    <span class="titleObj"> 
-                      <span class="title"> {{ challenges[4].title }}</span>
-                      <div> +  {{ challenges[4].gain }} pts</div>
-                    </span> 
-                    <md-grid-tile-footer>
-                        <h3>{{ challenges[4].detail }}</h3>
-                    </md-grid-tile-footer>
-                  </div>                        
-                </md-grid-tile>
-            </md-grid-list>
-        </div>
+        <md-grid-tile class="challenge {{ challenges[4].type }}" layout="row" ng-click="showAlert($event, challenges[4].advise)">
+          <div class="backCard">
+            <i class="{{ challenges[4].icon }}"></i>
+            <span class="titleObj"> 
+              <span class="title"> {{ challenges[4].title }}</span>
+              <div> +  {{ challenges[4].gain }} pts</div>
+            </span> 
+            <md-grid-tile-footer>
+                <h3>{{ challenges[4].detail }}</h3>
+            </md-grid-tile-footer>
+          </div>                        
+        </md-grid-tile>
+      </md-grid-list>
     </div>
   </div>
+
 </md-content>
