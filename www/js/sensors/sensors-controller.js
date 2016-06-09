@@ -5,9 +5,15 @@ SensorsCtrl.$inject = ['$interval', '$rootScope', 'sensorsService', 'speedLimits
 function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, maintenanceService) {
 
     $rootScope.challengeProgress = 0;
-    $rootScope.challengeDuration = 3*60*3600; // 3h
-    $rootScope.challenge2Progress = 0;
-    $interval(function() { $rootScope.challengeProgress += 1; $rootScope.challenge2Progress =$rootScope.challengeProgress /2 }, $rootScope.challengeDuration/100, 100);
+    $rootScope.challengeDuration = 10*60*1000; // 1h
+    $interval(progress, $rootScope.challengeDuration/100, 100).then(progressEnd);
+    function progress() { 
+        $rootScope.challengeProgress += 1; 
+    }
+    function progressEnd() {
+        
+        $rootScope.challenges[0].state = 1;
+    }
 
     
     if (!$rootScope.sensorsInitialized) {
