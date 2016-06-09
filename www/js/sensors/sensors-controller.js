@@ -5,8 +5,12 @@ SensorsCtrl.$inject = ['$interval', '$rootScope', 'sensorsService', 'speedLimits
 function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, maintenanceService, $mdDialog) {
 
     $rootScope.challengeProgress = 0;
-    $rootScope.challengeDuration = 10*60*1000; // 1h
-    $interval(progress, $rootScope.challengeDuration/100, 100).then(progressEnd);
+    $rootScope.challengeDuration = 2*60*1000; // 1h
+    $rootScope.progressStart = function () {
+        $rootScope.challengeProgress = 0;
+        $rootScope.progressInterval = $interval(progress, $rootScope.challengeDuration/100, 100);
+        $rootScope.progressInterval.then(progressEnd);
+    };
     function progress() {
         $rootScope.challengeProgress += 1;
     }
@@ -14,7 +18,11 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
 
         $rootScope.challenges[0].state = 1;
     }
-
+    $rootScope.progressReset = function () {
+        $rootScope.challenges[0].state = 0;
+        $rootScope.challengeProgress = 0;
+        $interval.cancel($rootScope.progressInterval);
+    }
 
     if (!$rootScope.sensorsInitialized) {
 
@@ -328,18 +336,19 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
         }
     }
 
-    $rootScope.showAlert = function(ev, advise) {
+    $rootScope.showAlert = function(ev, advise, callback) {
       // Appending dialog to document.body to cover sidenav in docs app
       // Modal dialogs should fully cover application
       // to prevent interaction outside of dialog
       $mdDialog.show(
-        $mdDialog.alert()
+        $mdDialog.confirm()
           .parent(angular.element(document.querySelector('#popupContainer')))
           .clickOutsideToClose(true)
           .title('A propos du challenge')
           .textContent(advise)
-          .ok('OK')
+          .ok('GO!')
+          .cancel('Plus tard')
           .targetEvent(ev)
-      );
+      ).then($rootScope.progressStart, $rootScope.progressReset);
     };
 }
