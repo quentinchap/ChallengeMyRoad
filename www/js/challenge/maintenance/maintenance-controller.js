@@ -5,10 +5,10 @@ function MaintenanceCtrl(/*$stateParams,*/ $rootScope, maintenanceService) {
     var vm = this;
 
     //$rootScope.challenges = maintenanceService.readAll();
-    
+
     vm.challenges = $rootScope.challenges;
 
-    if ($rootScope.challenges !== null) {
+    if ($rootScope.challenges) {
         console.log($rootScope.challenges.length);
         for (var i = 0; i < $rootScope.challenges.length; i++) {
             if ($rootScope.challenges[i].challengeUser.state === 0) {
@@ -16,12 +16,12 @@ function MaintenanceCtrl(/*$stateParams,*/ $rootScope, maintenanceService) {
             } else {
                 $rootScope.challenges[i].challengeUser.challengeIcon = 'check_circle';
             }
-            
+
         }
 
     }
-    
-    
+
+
     vm.done = function (id) {
         for (var i = 0; i < $rootScope.challenges.length; i++) {
             if ($rootScope.challenges[i].idChallenge == id) {
@@ -33,10 +33,9 @@ function MaintenanceCtrl(/*$stateParams,*/ $rootScope, maintenanceService) {
 
     vm.later = function (id) {
         for (var i = 0; i < $rootScope.challenges.length; i++) {
-            if ($rootScope.challenges[i].idChallenge == id) {            
+            if ($rootScope.challenges[i].idChallenge == id) {
                 $rootScope.challenges[i].challengeUser.display = false;
             }
         }
     };
 }
-

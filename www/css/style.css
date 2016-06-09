@@ -142,3 +142,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 .challenge-progress {
     margin-top: 1vh;    
 }
+#challengesStore
+{
+  width: 100%;
+}

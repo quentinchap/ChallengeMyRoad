@@ -59,7 +59,7 @@ md-progress-linear .md-container .md-bar{
 
 .points-counter .point
 {
-  font-size: 4em;
+  font-size: 3em;
   font-weight: bold;
   color: white;
 }
@@ -130,10 +130,10 @@ md-progress-linear .md-container .md-bar{
 
 .rouge .md-bar
 {
-  background-color: red;
+  background-color: rgb(198,79,80);
 }
 
 .vert .md-bar
 {
-  background-color: green;
+  background-color: rgb(76,175,80);
 }

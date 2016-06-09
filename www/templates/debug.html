@@ -1,0 +1,57 @@
+<md-content layout-padding flex style="font-family: monospace">
+    <label>Coordinates
+        <span>{{coordinates.latitude.toFixed(2)}}, {{coordinates.longitude.toFixed(2)}}, {{coordinates.altitude.toFixed(2)}}</span>
+    </label>
+    <br/>
+    <label>Speed
+        <span>{{speed * 3.6}}</span>
+    </label>
+    <br/>
+    <label>Speed limit
+        <span>{{speedBox}}</span>
+    </label>
+    <br/>
+    <label>Acceleration
+        <span>{{acceleration.x.toFixed(2)}}, {{acceleration.y.toFixed(2)}}, {{acceleration.z.toFixed(2)}}</span>
+    </label>
+    <br/>
+    <label>Distance
+        <span>{{distance}}</span>
+    </label>
+    <br/>
+    <label>Points
+        <span>{{points}}</span>
+    </label>
+    <br/>
+    <label>Accuracy
+        <span>{{accuracy}}</span>
+    </label>
+    <br/>
+    <label>Speed progress
+        <span>{{speedProgress}}</span>
+    </label>
+    <br/>
+    <label>Acceleration progress
+        <span>{{accelerationProgress}}</span>
+    </label>
+    <br/>
+    <label>Braking progress
+        <span>{{brakingProgress}}</span>
+    </label>
+    <br/>
+    <label>Temperature
+        <span>{{temperature}}</span>
+    </label>
+    <br/>
+    <label>Pressure
+        <span>{{pressure}}</span>
+    </label>
+    <br/>
+    <label>Humidity
+        <span>{{humidity}}</span>
+    </label>
+    <br/>
+    <label>Wind speed
+        <span>{{windSpeed}}</span>
+    </label>
+</md-content>
