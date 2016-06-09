@@ -74,8 +74,7 @@ angular.module('starter', ['ionic', 'ngMaterial','ngAnimate','ngCordovaOauth',
         authenticate: false,
         views: {
           'menuContent': {
-            templateUrl: 'templates/debug.html',
-            controller: 'SensorsCtrl'
+            templateUrl: 'templates/debug.html'
           }
         }
       })

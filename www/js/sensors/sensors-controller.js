@@ -7,38 +7,38 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
     if (!$rootScope.sensorsInitialized) {
 
         $rootScope.challenges = [{
-                idChallenge: 1,
-                title: "Réduire sa vitesse",
-                detail: "Réduisez votre vitesse moyenne de 5 km/h sur ce trajet.",
-                gain: 100,
-                goalCriteria: "<=",
-                goalType: "km/h",
-                goalValue: 80,
-                type: "navigation",
-                icon:"mdi mdi-speedometer",
+            idChallenge: 1,
+            title: "Réduire sa vitesse",
+            detail: "Réduisez votre vitesse moyenne de 5 km/h sur ce trajet.",
+            gain: 100,
+            goalCriteria: "<=",
+            goalType: "km/h",
+            goalValue: 80,
+            type: "navigation",
+            icon: "mdi mdi-speedometer",
+            challengeUser: {
+                idUser: 1,
+                display: 1,
+                state: 0
+            }
+        },
+
+            {
+                idChallenge: 2,
+                title: "Adapter votre conduite",
+                detail: "Adapter votre vitesse au temps pluvieux.",
+                gain: 50,
+                goalType: "OK/KO",
+                goalValue: "OK",
+                type: "meteo bad",
+                icon: "mdi mdi-weather-pouring",
                 challengeUser: {
                     idUser: 1,
                     display: 1,
                     state: 0
                 }
+
             },
-
-          {
-            idChallenge: 2,
-            title: "Adapter votre conduite",
-            detail: "Adapter votre vitesse au temps pluvieux.",
-            gain: 50,
-            goalType: "OK/KO",
-            goalValue: "OK",
-            type: "meteo bad",
-            icon:"mdi mdi-weather-pouring",
-            challengeUser: {
-              idUser: 1,
-              display: 1,
-              state: 0
-            }
-
-          },
             {
                 idChallenge: 3,
                 title: "Pression des pneus",
@@ -47,7 +47,7 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
                 goalType: "OK/KO",
                 goalValue: "OK",
                 type: "navigation",
-              icon:"mdi mdi-car",
+                icon: "mdi mdi-car",
                 challengeUser: {
                     idUser: 1,
                     display: 1,
@@ -56,40 +56,41 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
 
             },
 
-          {
-            idChallenge: 4,
-            title: "Kilométrage du véhicule",
-            detail: "Veuilez indiquer le kilométrage du véhicule.",
-            gain: 50,
-            goalType: "OK/KO",
-            goalValue: "OK",
-            type: "navigation",
-            icon:"mdi mdi-pencil-box-outline",
-            challengeUser: {
-              idUser: 1,
-              display: 1,
-              state: 0
-            }
+            {
+                idChallenge: 4,
+                title: "Kilométrage du véhicule",
+                detail: "Veuilez indiquer le kilométrage du véhicule.",
+                gain: 50,
+                goalType: "OK/KO",
+                goalValue: "OK",
+                type: "navigation",
+                icon: "mdi mdi-pencil-box-outline",
+                challengeUser: {
+                    idUser: 1,
+                    display: 1,
+                    state: 0
+                }
 
-          },
-          {
-            idChallenge: 5,
-            title: "Adopter une conduite souple",
-            detail: "Eviter les freinages, les ralentissements et utiliser le frein moteur permet un gain de carburant de 40%.",
-            gain: 50,
-            goalType: "OK/KO",
-            goalValue: "OK",
-            type: "navigation",
-            icon:"mdi mdi-tree",
-            challengeUser: {
-              idUser: 1,
-              display: 1,
-              state: 0
-            }
+            },
+            {
+                idChallenge: 5,
+                title: "Adopter une conduite souple",
+                detail: "Eviter les freinages, les ralentissements et utiliser le frein moteur permet un gain de carburant de 40%.",
+                gain: 50,
+                goalType: "OK/KO",
+                goalValue: "OK",
+                type: "navigation",
+                icon: "mdi mdi-tree",
+                challengeUser: {
+                    idUser: 1,
+                    display: 1,
+                    state: 0
+                }
 
-          }
+            }
         ];
 
+        console.log("Init");
         $rootScope.sensorsInitialized = true;
         $rootScope.loaded = false;
 
@@ -110,6 +111,9 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
         $rootScope.speedProgress = 50;
         $rootScope.brakingProgress = 50;
         $rootScope.accelerationProgress = 50;
+        $rootScope.displayedSpeedProgress = 50;
+        $rootScope.displayedBrakingProgress = 50;
+        $rootScope.displayedAccelerationProgress = 50;
         $rootScope.distance = 0;
 
         $rootScope.temperature = undefined;
@@ -117,30 +121,28 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
         $rootScope.humidity = undefined;
         $rootScope.windSpeed = undefined;
 
-        $rootScope.speedLimit = undefined;
-        // DEMO
-        // $rootScope.speedLimit = 13.8;
+        $rootScope.speedLimit = 13.8;
+
+        var pointsUpdateThreshold = 100;
+
+        var speedLimitIncrement = 1;
+        var speedLimitDecrement = 10;
+
+        $rootScope.accelerationSpeedThreshold = 5;
+        $rootScope.accelerationIntensityThreshold = -2;
+        $rootScope.accelerationIncrement = 0.05;
+        $rootScope.accelerationDecrement = 1.0;
+
+        $rootScope.brakingSpeedThreshold = 5;
+        $rootScope.brakingIntensityThreshold = 5;
+        $rootScope.brakingIncrement = 0.05;
+        $rootScope.brakingDecrement = 1.0;
+
+        $rootScope.overrideSpeedLimit = true;
+        $rootScope.speedLimitOverride = 13.8;
+
+        initialize();
     }
-
-    var pointsUpdateThreshold = 100;
-
-    var speedLimitIncrement = 1;
-    var speedLimitDecrement = 10;
-
-    var accelerationSpeedThreshold = 5;
-    var accelerationIntensityThreshold = -2;
-    var accelerationIncrement = 0.1
-    var accelerationDecrement = 1.0;
-
-    var brakingSpeedThreshold = 5;
-    var brakingIntensityThreshold = 5;
-    var brakingIncrement = 0.1;
-    var brakingDecrement = 1.0;
-
-    var overrideSpeedLimit = false;
-    var speedLimitOverride = 50.0;
-
-    initialize();
 
     function initialize() {
         registerPositionListener();
@@ -148,6 +150,11 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
         registerWeatherListener();
         registerSpeedLimitListener();
         $rootScope.loaded = true;
+        $interval(function () {
+            $rootScope.displayedSpeedProgress = $rootScope.speedProgress;
+            $rootScope.displayedBrakingProgress = $rootScope.brakingProgress;
+            $rootScope.displayedAccelerationProgress = $rootScope.accelerationProgress;
+        }, 100);
     }
 
     function registerPositionListener() {
@@ -225,8 +232,8 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
     function updateSpeedLimit() {
         speedLimitsService.getSpeedLimitAtPosition($rootScope.coordinates, $rootScope.accuracy)
             .then(function (speedLimit) {
-                if (overrideSpeedLimit) {
-                    $rootScope.speedLimit = speedLimitOverride;
+                if ($rootScope.overrideSpeedLimit) {
+                    $rootScope.speedLimit = $rootScope.speedLimitOverride;
                     return;
                 }
                 $rootScope.speedLimit = undefined !== speedLimit ? speedLimit / 3.6 : undefined;
@@ -255,35 +262,31 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
         } else {
             $rootScope.points += points;
         }
-        $rootScope.$apply();
     }
 
     function updateSpeedProgress() {
-        if (undefined === $rootScope.speedLimit) {
-            //$rootScope.speedProgress += 0.5;
-            return;
-        }
-        if (undefined !== $rootScope.speedLimit) {
-            if ($rootScope.speed < $rootScope.speedLimit) {
-                $rootScope.speedProgress += speedLimitIncrement;
-            } else {
-                $rootScope.speedProgress -= speedLimitDecrement;
+        if ($rootScope.speed > $rootScope.accelerationSpeedThreshold / 3.6) {
+            if (undefined !== $rootScope.speedLimit) {
+                if ($rootScope.speed < $rootScope.speedLimit) {
+                    $rootScope.speedProgress += speedLimitIncrement;
+                } else {
+                    $rootScope.speedProgress -= speedLimitDecrement;
+                }
+            }
+            if ($rootScope.speedProgress < 0) {
+                $rootScope.speedProgress = 0;
+            } else if ($rootScope.speedProgress > 100) {
+                $rootScope.speedProgress = 100;
             }
         }
-        if ($rootScope.speedProgress < 0) {
-            $rootScope.speedProgress = 0;
-        } else if ($rootScope.speedProgress > 100) {
-            $rootScope.speedProgress = 100;
-        }
-        $rootScope.$apply();
     }
 
     function updateBrakingProgress() {
-        if ($rootScope.speed > brakingSpeedThreshold / 3.6) {
-            if ($rootScope.acceleration.z <= brakingIntensityThreshold) {
-                $rootScope.brakingProgress += brakingIncrement;
-            } else {
-                $rootScope.brakingProgress -= brakingDecrement;
+        if ($rootScope.speed > $rootScope.brakingSpeedThreshold / 3.6) {
+            if ($rootScope.acceleration.z <= $rootScope.brakingIntensityThreshold && $rootScope.acceleration.z >= $rootScope.accelerationIntensityThreshold) {
+                $rootScope.brakingProgress += $rootScope.brakingIncrement;
+            } else if ($rootScope.acceleration.z > $rootScope.brakingIntensityThreshold) {
+                $rootScope.brakingProgress -= $rootScope.brakingDecrement;
             }
         }
         if ($rootScope.brakingProgress < 0) {
@@ -291,15 +294,14 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
         } else if ($rootScope.brakingProgress > 100) {
             $rootScope.brakingProgress = 100;
         }
-        $rootScope.$apply();
     }
 
     function updateAccelerationProgress() {
-        if ($rootScope.speed > accelerationSpeedThreshold / 3.6) {
-            if ($rootScope.acceleration.z >= accelerationIntensityThreshold) {
-                $rootScope.accelerationProgress += accelerationIncrement;
-            } else {
-                $rootScope.accelerationProgress -= accelerationDecrement;
+        if ($rootScope.speed > $rootScope.accelerationSpeedThreshold / 3.6) {
+            if ($rootScope.acceleration.z <= $rootScope.brakingIntensityThreshold && $rootScope.acceleration.z >= $rootScope.accelerationIntensityThreshold) {
+                $rootScope.accelerationProgress += $rootScope.accelerationIncrement;
+            } else if ($rootScope.acceleration.z < $rootScope.accelerationIntensityThreshold) {
+                $rootScope.accelerationProgress -= $rootScope.accelerationDecrement;
             }
         }
         if ($rootScope.accelerationProgress < 0) {
@@ -307,17 +309,5 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
         } else if ($rootScope.accelerationProgress > 100) {
             $rootScope.accelerationProgress = 100;
         }
-        $rootScope.$apply();
-    }
-// z positif desceleration
-// 6 = freinage brutal
-// seil vitesse frainage 
-// acc oppose freinage
-// seuil freinage superiieur
-// seuil 6-7
-// increment trop rapide.
-
-    function norm(vector) {
-        return Math.sqrt(vector.x * vector.x + vector.y * vector.y + vector.z * vector.z);
     }
 }
