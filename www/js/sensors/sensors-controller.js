@@ -7,11 +7,11 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
     $rootScope.challengeProgress = 0;
     $rootScope.challengeDuration = 10*60*1000; // 1h
     $interval(progress, $rootScope.challengeDuration/100, 100).then(progressEnd);
-    function progress() { 
-        $rootScope.challengeProgress += 1; 
+    function progress() {
+        $rootScope.challengeProgress += 1;
     }
     function progressEnd() {
-        
+
         $rootScope.challenges[0].state = 1;
     }
 
@@ -60,7 +60,7 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
           gain: 50,
           goalType: "OK/KO",
           goalValue: "OK",
-          type: "navigation",
+          type: "mecanic",
           advise: "Un pneu perd naturellement de la pression et celle-ci varie selon la température. Il est donc recommandé de vérifier la pression de vos pneus au moins une fois par mois et avant un long trajet. Pensez à vérifier également la roue de secours.",
           icon:"mdi mdi-car",
           challengeUser: {
@@ -78,7 +78,7 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
           gain: 50,
           goalType: "OK/KO",
           goalValue: "OK",
-          type: "navigation",
+          type: "smartphone",
           icon:"mdi mdi-pencil-box-outline",
           advise:"Cette information améliore la qualité de nos prévisions personnalisés.",
           challengeUser: {
@@ -95,7 +95,7 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
           gain: 50,
           goalType: "OK/KO",
           goalValue: "OK",
-          type: "navigation",
+          type: "nature",
           icon:"mdi mdi-tree",
           advise:"Une conduite souple et sûre permet un gain de carburant de 40 % : éviter les freinages, les changements de rapports inutiles (20% d'économies), anticiper les ralentissements, éviter les accélérations intempestives et souvent inutiles, utiliser le frein moteur en décélérant pied levé avec une vitesse enclenchée.",
           challengeUser: {
