@@ -156,7 +156,7 @@ md-menu-content.md-default-theme, md-menu-content
 }
 
 .grayedout {
-    opacity: 0.7;
+    opacity: 0.8!important;
 }
 
 .carddiv {

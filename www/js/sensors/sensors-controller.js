@@ -1,41 +1,45 @@
 angular.module('starter.sensors')
     .controller('SensorsCtrl', SensorsCtrl);
 
-SensorsCtrl.$inject = ['$interval', '$rootScope', 'sensorsService', 'speedLimitsService', 'maintenanceService', '$mdDialog'];
-function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, maintenanceService, $mdDialog) {
+SensorsCtrl.$inject = ['$interval', '$scope', '$rootScope', 'sensorsService', 'speedLimitsService', 'maintenanceService', '$mdDialog'];
+function SensorsCtrl($interval, $scope, $rootScope, sensorsService, speedLimitsService, maintenanceService, $mdDialog) {
 
     if (!$rootScope.sensorsInitialized) {
 
-        $rootScope.challengeProgress = 0;
-        $rootScope.challengeDuration = 30; // 1h
-        $interval(progress, 1000, $rootScope.challengeDuration).then(progressEnd);
-        function progress() {
+        $scope.challengeState = 0;
+        $rootScope.challengeDuration = 120; // 1h
+        $rootScope.progress = function () {
             if ($rootScope.violentBrakes > 3) {
                 $rootScope.challenges[0].state = 2;
+                $scope.challengeState = 2;
                 return;
             }
             $rootScope.challengeProgress += (100 / $rootScope.challengeDuration);
         }
-        function progressEnd() {
+        $rootScope.progressEnd = function () {
+            //$rootScope.challengeProgress = 0;
             $rootScope.challenges[0].state = 1;
+            $scope.challengeState = 1;            
+            $rootScope.points += 50;
         }
 
-    $rootScope.progressStart = function () {
-        $rootScope.challengeProgress = 0;
-        $rootScope.progressInterval = $interval(progress, $rootScope.challengeDuration/100, 100);
-        $rootScope.progressInterval.then(progressEnd);
-    };
-    $rootScope.progressReset = function () {
-        $rootScope.challenges[0].state = 0;
-        $rootScope.challengeProgress = 0;
-        $interval.cancel($rootScope.progressInterval);
-    }
+        $rootScope.progressStart = function () {
+            $rootScope.challengeProgress = 0;
+            $rootScope.progressInterval = $interval($rootScope.progress, 1000, $rootScope.challengeDuration);
+            $rootScope.progressInterval.then($rootScope.progressEnd);
+        };
+        $rootScope.progressReset = function () {
+            $rootScope.challenges[0].state = 0;
+            $scope.challengeState = 0;
+            $rootScope.challengeProgress = 0;
+            $interval.cancel($rootScope.progressInterval);
+        }
 
       $rootScope.challenges = [
         {
           idChallenge: 5,
           title: "Eviter les freinages brusques",
-          detail: "Adopter un freinage doux pendant 10 minutes.",
+          detail: "Adopter un freinage doux pendant 2 minutes.",
           gain: 50,
           goalType: "OK/KO",
           goalValue: "OK",
@@ -371,5 +375,21 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
           .cancel('Plus tard')
           .targetEvent(ev)
       ).then($rootScope.progressStart, $rootScope.progressReset);
+    }
+    
+    $rootScope.showAlert2 = function(ev, advise, callback) {
+      // Appending dialog to document.body to cover sidenav in docs app
+      // Modal dialogs should fully cover application
+      // to prevent interaction outside of dialog
+      $mdDialog.show(
+        $mdDialog.alert()
+          .parent(angular.element(document.querySelector('#popupContainer')))
+          .clickOutsideToClose(true)
+          .title('A propos du challenge')
+          .textContent(advise)
+          .ok('OK')
+          .targetEvent(ev)
+      );        
     };
+
 }
