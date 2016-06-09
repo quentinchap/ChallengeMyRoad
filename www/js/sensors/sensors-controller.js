@@ -19,6 +19,7 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
         function progressEnd() {
             $rootScope.challenges[0].state = 1;
         }
+
     $rootScope.progressStart = function () {
         $rootScope.challengeProgress = 0;
         $rootScope.progressInterval = $interval(progress, $rootScope.challengeDuration/100, 100);
@@ -29,6 +30,93 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
         $rootScope.challengeProgress = 0;
         $interval.cancel($rootScope.progressInterval);
     }
+
+      $rootScope.challenges = [
+        {
+          idChallenge: 5,
+          title: "Eviter les freinages brusques",
+          detail: "Adopter un freinage doux pendant 10 minutes.",
+          gain: 50,
+          goalType: "OK/KO",
+          goalValue: "OK",
+          type: "nature",
+          icon:"mdi mdi-tree",
+          advise:"Une conduite souple et sûre permet un gain de carburant de 40 % : éviter les freinages, les changements de rapports inutiles (20% d'économies), anticiper les ralentissements, éviter les accélérations intempestives et souvent inutiles, utiliser le frein moteur en décélérant pied levé avec une vitesse enclenchée.",
+          challengeUser: {
+            idUser: 1,
+            display: 1,
+            state: 0
+          }
+        },
+        {
+          idChallenge: 2,
+          title: "Adapter votre conduite",
+          detail: "Adapter votre vitesse au temps pluvieux.",
+          gain: 50,
+          goalType: "OK/KO",
+          goalValue: "OK",
+          type: "meteo bad",
+          icon:"mdi mdi-weather-pouring",
+          advise:"Par temps de pluis, soyez vigilant et adaptez votre conduite en fonction.",
+          challengeUser: {
+            idUser: 1,
+            display: 1,
+            state: 0
+          }
+
+        },
+        {
+          idChallenge: 3,
+          title: "Pression des pneus",
+          detail: "Veuilez effectuer la pression des pneus.",
+          gain: 50,
+          goalType: "OK/KO",
+          goalValue: "OK",
+          type: "mecanic",
+          advise: "Un pneu perd naturellement de la pression et celle-ci varie selon la température. Il est donc recommandé de vérifier la pression de vos pneus au moins une fois par mois et avant un long trajet. Pensez à vérifier également la roue de secours.",
+          icon:"mdi mdi-car",
+          challengeUser: {
+            idUser: 1,
+            display: 1,
+            state: 0
+          }
+
+        },
+
+        {
+          idChallenge: 4,
+          title: "Kilométrage du véhicule",
+          detail: "Veuilez indiquer le kilométrage du véhicule.",
+          gain: 50,
+          goalType: "OK/KO",
+          goalValue: "OK",
+          type: "smartphone",
+          icon: "mdi mdi-pencil-box-outline",
+          advise: "Cette information améliore la qualité de nos prévisions personnalisés.",
+          challengeUser: {
+            idUser: 1,
+            display: 1,
+            state: 0
+          }
+        },
+        {
+          idChallenge: 1,
+          title: "Réduire sa vitesse",
+          detail: "Réduisez votre vitesse moyenne de 5 km/h sur ce trajet.",
+          gain: 100,
+          goalCriteria: "<=",
+          goalType: "km/h",
+          goalValue: 80,
+          type: "navigation",
+          icon: "mdi mdi-speedometer",
+          advise: "Réduire la vitesse d’une dizaine de kilomètres/heure ne vous mettra pas trop en retard et vous fera faire des economies. Exemples : - 30 km parcourus à 80 km/h de moyenne (22min30s) plutôt que 90 km/h (20min), augmente votre trajet de 2 minutes 30 secondes. - 100 km parcourus à 80 km/h de moyenne (1h15min) plutôt que 90 km/h (1h06min40s), augmente votre trajet de 8 minutes 20 secondes.",
+          challengeUser: {
+            idUser: 1,
+            display: 1,
+            state: 0
+          }
+        }
+      ];
 
         console.log("Init");
         $rootScope.sensorsInitialized = true;
