@@ -5,16 +5,18 @@ SensorsCtrl.$inject = ['$interval', '$rootScope', 'sensorsService', 'speedLimits
 function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, maintenanceService, $mdDialog) {
 
     $rootScope.challengeProgress = 0;
-    $rootScope.challengeDuration = 10*60*1000; // 1h
-    $interval(progress, $rootScope.challengeDuration/100, 100).then(progressEnd);
+    $rootScope.challengeDuration = 30; // 1h
+    $interval(progress, 1000, $rootScope.challengeDuration).then(progressEnd);
     function progress() {
-        $rootScope.challengeProgress += 1;
+        if ($rootScope.violentBrakes > 3) {
+            $rootScope.challenges[0].state = 2;
+            return;
+        }
+        $rootScope.challengeProgress += (100 / $rootScope.challengeDuration); 
     }
     function progressEnd() {
-
         $rootScope.challenges[0].state = 1;
     }
-
 
     if (!$rootScope.sensorsInitialized) {
 
@@ -156,6 +158,11 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
         $rootScope.overrideSpeedLimit = true;
         $rootScope.speedLimitOverride = 13.8;
 
+        $rootScope.driving = false;
+        $rootScope.brakes = 0;
+        $rootScope.violentBrakes = 0;
+        $rootScope.violentBraking = false;
+
         initialize();
     }
 
@@ -281,6 +288,7 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
 
     function updateSpeedProgress() {
         if ($rootScope.speed > $rootScope.accelerationSpeedThreshold / 3.6) {
+            $rootScope.driving = true;
             if (undefined !== $rootScope.speedLimit) {
                 if ($rootScope.speed < $rootScope.speedLimit) {
                     $rootScope.speedProgress += speedLimitIncrement;
@@ -293,6 +301,11 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
             } else if ($rootScope.speedProgress > 100) {
                 $rootScope.speedProgress = 100;
             }
+        } else {
+            if ($rootScope.driving) {
+                $rootScope.driving = false;
+                $rootScope.brakes += 1;
+            }
         }
     }
 
@@ -300,8 +313,15 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
         if ($rootScope.speed > $rootScope.brakingSpeedThreshold / 3.6) {
             if ($rootScope.acceleration.z <= $rootScope.brakingIntensityThreshold && $rootScope.acceleration.z >= $rootScope.accelerationIntensityThreshold) {
                 $rootScope.brakingProgress += $rootScope.brakingIncrement;
+                if ($rootScope.violentBraking && $rootScope.brakingProgress >= 20) {
+                    $rootScope.violentBraking = false;
+                }
             } else if ($rootScope.acceleration.z > $rootScope.brakingIntensityThreshold) {
                 $rootScope.brakingProgress -= $rootScope.brakingDecrement;
+                if ($rootScope.brakingProgress < 20 && !$rootScope.violentBraking) {
+                    $rootScope.violentBraking = true;
+                    $rootScope.violentBrakes += 1;
+                }
             }
         }
         if ($rootScope.brakingProgress < 0) {
