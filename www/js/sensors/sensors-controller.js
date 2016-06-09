@@ -85,6 +85,7 @@ function SensorsCtrl($interval, $rootScope, sensorsService, speedLimitsService, 
                     display: 1,
                     state: 0
                 }
+            }
         ];
 
         console.log("Init");
